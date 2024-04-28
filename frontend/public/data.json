@@ -1,0 +1,127 @@
+{
+    "fallOfRome": [
+        {
+            "imageId": "crisis",
+            "titleImg": "The Crisis of the Third Century",
+            "text": "From AD 235 - AD 284, there were several things leading to the Roman Empire nearly collapsing, such as military vulnerabilities to invasion, civil war, plague, and economic depression. The crisis started in AD 235 when Emperor Alexander Severus was killed by his own troops. Instead of fighting their enemies, the Germanics, Alexander wanted to instead pacify them by paying tribute and resorted to harmless acts. This caused Alexander's troops to lose respect for him, so they killed him. With the loss of the Emperor, there was now a spot that needed to be filled in the Empire. Many people wanted to fill that spot, so generals of the Roman army neglected their duties in order to become Emperor. With the generals disregarding their duties, border protection began to decrease, and raids started to become frequent. After a while, the Roman Empire split up into three competing states to fight for the spot of Emperor of the Roman Empire: the Gallic Empire, Britannia, and Hispania. After Emperor Claudius II Gothicus won the Battle of Naissus, Hispania decided to come back to the Roman Empire. After Claudius died from a plague in 270, the commander of the cavalry at the Battle of Naissus Aurelian became the next successor and restored the Empire back to its former glory by defeating the Gallic Empire. Aurelian was able to defeat the Gallic Empire and the rest of Rome's invaders, reuniting all three competing back into the Roman Empire.",
+            "image": "./images/crisis_of_third_empire.jpg"
+        },
+        {
+            "imageId": "rise",
+            "titleImg": "The Rise of the Eastern Empire",
+            "text": "In AD 395, the Roman Empire was faced with political challenges, military pressures, religious differences, and other various factors that made it difficult to maintain the entirety of the Roman Empire. Emperor Diocletian came up with a solution to help solve the issues that the Roman Empire was having, where he decided to split the empire into two halves, the Western Empire and the Eastern Empire. Due to this decision, the Roman Empire was easier to govern. However, the two empires started to drift apart after a while, to the point where they stopped working together to protect themselves from outside threats. They would even get into arguments about resources and military aid. As time went on, the Eastern Empire became very wealthy while the Western Empire descended into an economic crisis. Eventually, the political structure of the West couldn't survive, and the Western Empire fell apart, leaving only half of the Roman Empire to stand.",
+            "image": "./images/byzantine_empire.jpg"
+        },
+        {
+            "imageId": "fall",
+            "titleImg": "The Fall of Rome",
+            "text": "In AD 410, the city of Rome was destroyed by the Visigoths, a wandering nation of Germanic northeastern people. They were able to breach the walls of Rome and sack the capital of the Roman Empire. The Visigoths did as much damage as possible to the capital city, where they looted, burned, and pillaged everything in their way. This caused major irreversible damage to Rome, and their complete destruction wouldn't happen until 66 years later, AD 476, when the last Roman emperor of the West, Romulus Augustulus, was killed by a German chieftain, marking a definitive stage in the decline of the Western Roman Empire. Historians aren't entirely sure what the exact cause of the fall of Rome was after this point, but many have debated the reasons behind Rome's fall. Some argue that it resulted from a process of compromise and negotiation between the Romans and various barbarian groups. Others, however, emphasize the sheer brutality, devastation, and fear that accompanied its downfall.",
+            "image": "./images/fall_of_rome.jpg"
+        }
+    ],
+    "punicWars": [
+        {
+            "imageId": "first",
+            "titleImg": "The First Punic War Map",
+            "text": "The first punic war was the first war between Rome and Carthage from 264 to 241 BC. Both sides were led by many different leaders throughout the war. This was also a war mainly fought on the island of Sicily. The war was started when a group of mercenaries called for both sides to help them against a different force which eventually started the war between them as Carthage wanted the entirety of Sicily for themselves. To start the Romans struggled to supply their troops on Sicily as they had never engaged in big naval combat before, while Carthage was built on naval trade and combat. But once the Romans figured out how to sail properly they started to succeed in conquering Sicily. While at the same time the Roman’s sent some troops to the Carthage mainland who were threatening the capital. The Romans did eventually win this war but not without major setbacks of losing two fleets of ships in three years during the war which made it harder to supply their troops throughout the war. This war resulted in Rome gaining all of Sicily except for Syracuse. The Romans lost about 400,000 and the Carthaginians had an unknown number of casualties.",
+            "image": "./images/first_punic_war_map.jpg"
+        },
+        {
+            "imageId": "second",
+            "titleImg": "The Second Punic War Map",
+            "text": "The second punic war was another war between the Romans and the Carthaginians from 218 to 201 BC, the Romans were led by many different consoles and the Carthaginians were led by Hannibal. Early in the war Hannibal and the Carthaginians surprised the Romans by invading through the Alps. This led to sweeping through much of Rome but not all of it. But then Scipio was put in charge of the Roman legions and led them to victories throughout Iberia and Africa, which caused the Carthaginians to recall Hanniball and his forces to Africa, where he was eventually defeated and caused the surrender of Carthage. This war resulted in Rome gaining much of Iberia (Spain) and over 300,000 Romans were killed and an unknown number of Carthaginians.",
+            "image": "./images/second_punic_war_map.jpg"
+        },
+        {
+            "imageId": "third",
+            "titleImg": "The Third Punic War Map",
+            "text": "War between Rome and Carthage for the third time from 149 to 146 BC. However this time the war was entirely fought on Carthaginian territory. At the start of the war the Romans took advantage of the fact Carthage couldn’t fight back due to peace treaties. The Romans then besieged some of the cities in order to starve the Carthaginians out. The Carthaginians ended up not actually fighting back much at all and just surrendered. This war resulted in Rome gaining lots of territory in north Africa, Carthage was disbanded, and they lost almost 750,000 lives and an unknown number of Romans.",
+            "image": "./images/third_punic_war_map.jpg"
+        }
+    ],
+    "riseOfRome": [
+        {
+            "imageId": "founding",
+            "titleImg": "The Founding of Rome",
+            "text": "According to legends Rome was founded by Romulus and Remus the sons of the Roman God Mars in 753 BC. It is said they were suckled by a wolf which helped them gain their strength to establish Rome. Eventually after a while Romulus bashed in Remus’s skull and killed him. Which started the rule of the kings and having Rome as a Tyranny. Although the people did eventually grow tired of the Kings this does give a good picture of who founded Rome.",
+            "image": "./images/founding_rome.jpg"
+        },
+        {
+            "imageId": "republic",
+            "titleImg": "The Start of the Roman Republic",
+            "text": "The Roman Republic was founded in 509 BC after the Romans overthrew the last Estrucan king as the people were tired of having a king with too much power over them. This is why they switched to a Republic system with two consoles who made decisions, but they would be elected every year. As they wanted the government to have very little power over their personal lives but still wanted strong protectors leading them. However winning wars were very important in Rome at the time which would explain why they fought so much.",
+            "image": "./images/roman_republic.jpg"
+        },
+        {
+            "imageId": "latin",
+            "titleImg": "The Settlement of the Latin War",
+            "text": "When Rome gained Campania as a result of their victory in the First Samnite War, this provoked the Latins, who felt that their independence was at stake of being taken by the Roman Empire. From 340 BC - 338 BC, the Romans encountered opposition from neighboring Latin allied groups because of the perceived threat of Rome’s growing power and military strength. Rome ultimately won in their battle against the Latins, where their victory led to most of Latium, the central west part of Italy, being given Roman citizenship and officially becoming Roman territory. This would then be the place where the city of Rome was founded, where Latium would grow to be the capital city of the Roman Empire. The Latins and other Italian alliances were prohibited from engaging in direct diplomacy or making agreements with other states.",
+            "image": "./images/latin_war.jpg"
+        }
+    ],
+    "timeline": [
+        {
+            "imageId": "foundingTime",
+            "titleImg": "The Founding of Rome",
+            "text": "753 BC",
+            "image": "./images/founding_of_rome.jpg",
+            "link": "./riseOfRome.html"
+        },
+        {
+            "imageId": "startOfRepublicTime",
+            "titleImg": "The Start of the Roman Republic",
+            "text": "509 BC",
+            "image": "./images/roman_republic_timeline.jpg",
+            "link": "./riseOfRome.html"
+        },
+        {
+            "imageId": "settlementLatinWarTime",
+            "titleImg": "The Settlement of the Latin War",
+            "text": "340 BC - 338 BC",
+            "image": "./images/latin_war_timeline.jpg",
+            "link": "./riseOfRome.html"
+        },
+        {
+            "imageId": "firstpunicwarTime",
+            "titleImg": "The First Punic War",
+            "text": "264 BC - 241 BC",
+            "image": "./images/first_punic_war.jpg",
+            "link": "./punicWars.html"
+        },
+        {
+            "imageId": "secondpunicwarTime",
+            "titleImg": "The Second Punic War",
+            "text": "218 BC - 201 BC",
+            "image": "./images/second_punic_war.jpg",
+            "link": "./punicWars.html"
+        },
+        {
+            "imageId": "thirdpunicwarTime",
+            "titleImg": "The Third Punic War",
+            "text": "149 BC - 146 BC",
+            "image": "./images/third_punic_war.jpg",
+            "link": "./punicWars.html"
+        },
+        {
+            "imageId": "crisisTime",
+            "titleImg": "The Crisis of the Third Century",
+            "text": "235 AD - 284 AD",
+            "image": "./images/crisis_timeline.jpg",
+            "link": "./fallOfRome.html"
+        },
+        {
+            "imageId": "riseEasternEmpireTime",
+            "titleImg": "The Rise of the Eastern Empire",
+            "text": "395 AD",
+            "image": "./images/rise_eastern_empire_timeline.jpg",
+            "link": "./fallOfRome.html"
+        },
+        {
+            "imageId": "fallTime",
+            "titleImg": "The Fall of Rome",
+            "text": "410 AD",
+            "image": "./images/fall_of_rome_timeline.jpg",
+            "link": "./fallOfRome.html"
+        }
+    ]
+}
