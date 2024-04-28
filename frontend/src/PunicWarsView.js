@@ -7,7 +7,8 @@ const PunicWarsView = ({
     switchToPunicWarsView,
     switchToFallofRomeView,
     switchToStudentView,
-    switchToInventoryView
+    switchToInventoryView,
+    theEvents
 }) => {
     const [isFirstSectionCollapsed, setIsFirstSectionCollapsed] = useState(true);
     const [isSecondSectionCollapsed, setIsSecondSectionCollapsed] = useState(true);
@@ -256,48 +257,48 @@ const PunicWarsView = ({
 
     return (
         <div>
-            <div style={{ backgroundColor: "rgb(33, 37, 41)", display: "flex", justifyContent: "center", height: "80px" }}>
+            <div style={{ backgroundColor: "rgb(0, 128, 255)", display: "flex", justifyContent: "center", height: "80px" }}>
                 <button
-                    className="text-white text-sm p-1 focus:outline-none"
+                    className="text-black text-sm p-1 focus:outline-none"
                     style={{ height: "35px", marginTop: "20px", background: "none", border: "none", fontSize: "20px" }}
                     onClick={switchToTimelineView}
                 >
                     Timeline
                 </button>
                 <button
-                    className="text-white text-sm p-1 focus:outline-none"
-                    style={{ marginLeft: "90px", height: "35px", marginTop: "20px", background: "none", border: "none", fontSize: "20px" }}
+                    className="text-black text-sm p-1 focus:outline-none"
+                    style={{ marginLeft: "90px", height: "35px", marginTop: "20px", background: "none", border: "none", fontSize: "20px"  }}
                     onClick={switchToRiseofRomeView}
                 >
                     Rise Of Rome
                 </button>
                 <button
                     className="text-white text-sm p-1 focus:outline-none"
-                    style={{ marginLeft: "90px", height: "35px", marginTop: "20px", background: "none", border: "none", fontSize: "20px" }}
+                    style={{ marginLeft: "90px", height: "35px", marginTop: "20px", background: "none", border: "none", fontSize: "20px"  }}
                     onClick={switchToPunicWarsView}
                 >
                     Punic Wars
                 </button>
                 <button
-                    className="text-white text-sm p-1 focus:outline-none"
-                    style={{ marginLeft: "90px", height: "35px", marginTop: "20px", background: "none", border: "none", fontSize: "20px" }}
+                    className="text-black text-sm p-1 focus:outline-none"
+                    style={{ marginLeft: "90px", height: "35px", marginTop: "20px", background: "none", border: "none", fontSize: "20px"  }}
                     onClick={switchToFallofRomeView}
                 >
                     Fall of Rome
                 </button>
                 <button
-                    className="text-white text-sm p-1 focus:outline-none"
-                    style={{ marginLeft: "90px", height: "35px", marginTop: "20px", background: "none", border: "none", fontSize: "20px" }}
+                    className="text-black text-sm p-1 focus:outline-none"
+                    style={{ marginLeft: "90px", height: "35px", marginTop: "20px", background: "none", border: "none", fontSize: "20px"  }}
                     onClick={switchToStudentView}
                 >
                     Information about the Students
                 </button>
                 <button
-                    className="text-white text-sm p-1 focus:outline-none"
-                    style={{ marginLeft: "90px", height: "35px", marginTop: "20px", background: "none", border: "none", fontSize: "20px" }}
+                    className="text-black text-sm p-1 focus:outline-none"
+                    style={{ marginLeft: "90px", height: "35px", marginTop: "20px", background: "none", border: "none", fontSize: "20px"  }}
                     onClick={switchToInventoryView}
                 >
-                    Inventory
+                    Learn More
                 </button>
             </div>
 
@@ -309,17 +310,17 @@ const PunicWarsView = ({
                 </h1>
                 <br></br>
                 <h2 className="lead" style={{ fontSize: "30px", maxWidth: "1000px", margin: "0 auto" }}>
-                    On this webpage, it will go over some of the key events of The Punic Wars, such as:
+                    In this view, it will go over some of the key events of The Punic Wars, such as:
                     <ul>
                         <li>The First Punic War</li>
                         <li>The Second Punic War</li>
                         <li>The Third Punic War</li>
                     </ul>
-                    While reading through the page, there will be a fun fact button at the end of each event description
-                    to make learning about the Punic wars
-                    a little more interesting. There will also be a quiz at the end of the webpage to
-                    test your understanding of the events
-                    that happened during the punic wars.
+                    While reading through the page, there will be a <b> fun fact </b> button at the end of each event description
+                    to make learning about the Punic wars a little more interesting. There will also be a <b> quiz </b> at the end of the webpage to
+                    test your understanding of the events that happened during the punic wars. If you want to learn more about a specific event, click the 
+                    <b> Learn More About This Event </b> button to add it to a queue. If you go to the <b> Learn More </b> page, you'll find that 
+                    event and resources to learn more about that event.
                 </h2>
             </div>
 
@@ -331,7 +332,7 @@ const PunicWarsView = ({
                     <div className="container">
                         <div className="row">
                             <div className="col">
-                            Section 1: The First Punic War
+                                Section 1: The First Punic War
                             </div>
                         </div>
                     </div>
@@ -371,7 +372,7 @@ const PunicWarsView = ({
                     <div className="container">
                         <div className="row">
                             <div className="col">
-                            Section 2: The Second Punic War
+                                Section 2: The Second Punic War
                             </div>
                         </div>
                     </div>
@@ -411,7 +412,7 @@ const PunicWarsView = ({
                     <div className="container">
                         <div className="row">
                             <div className="col">
-                            Section 3: The Third Punic War
+                                Section 3: The Third Punic War
                             </div>
                         </div>
                     </div>

@@ -161,7 +161,7 @@ const TimelineView = ({
 
     return (
         <div>
-            <div style={{ backgroundColor: "rgb(33, 37, 41)", display: "flex", justifyContent: "center", height: "80px" }}>
+            <div style={{ backgroundColor: "rgb(0, 128, 255)", display: "flex", justifyContent: "center", height: "80px" }}>
                 <button
                     className="text-white text-sm p-1 focus:outline-none"
                     style={{ height: "35px", marginTop: "20px", background: "none", border: "none", fontSize: "20px" }}
@@ -170,39 +170,39 @@ const TimelineView = ({
                     Timeline
                 </button>
                 <button
-                    className="text-white text-sm p-1 focus:outline-none"
-                    style={{ marginLeft: "90px", height: "35px", marginTop: "20px", background: "none", border: "none", fontSize: "20px" }}
+                    className="text-black text-sm p-1 focus:outline-none"
+                    style={{ marginLeft: "90px", height: "35px", marginTop: "20px", background: "none", border: "none", fontSize: "20px"  }}
                     onClick={switchToRiseofRomeView}
                 >
                     Rise Of Rome
                 </button>
                 <button
-                    className="text-white text-sm p-1 focus:outline-none"
-                    style={{ marginLeft: "90px", height: "35px", marginTop: "20px", background: "none", border: "none", fontSize: "20px" }}
+                    className="text-black text-sm p-1 focus:outline-none"
+                    style={{ marginLeft: "90px", height: "35px", marginTop: "20px", background: "none", border: "none", fontSize: "20px"  }}
                     onClick={switchToPunicWarsView}
                 >
                     Punic Wars
                 </button>
                 <button
-                    className="text-white text-sm p-1 focus:outline-none"
-                    style={{ marginLeft: "90px", height: "35px", marginTop: "20px", background: "none", border: "none", fontSize: "20px" }}
+                    className="text-black text-sm p-1 focus:outline-none"
+                    style={{ marginLeft: "90px", height: "35px", marginTop: "20px", background: "none", border: "none", fontSize: "20px"  }}
                     onClick={switchToFallofRomeView}
                 >
                     Fall of Rome
                 </button>
                 <button
-                    className="text-white text-sm p-1 focus:outline-none"
-                    style={{ marginLeft: "90px", height: "35px", marginTop: "20px", background: "none", border: "none", fontSize: "20px" }}
+                    className="text-black text-sm p-1 focus:outline-none"
+                    style={{ marginLeft: "90px", height: "35px", marginTop: "20px", background: "none", border: "none", fontSize: "20px"  }}
                     onClick={switchToStudentView}
                 >
                     Information about the Students
                 </button>
                 <button
-                    className="text-white text-sm p-1 focus:outline-none"
-                    style={{ marginLeft: "90px", height: "35px", marginTop: "20px", background: "none", border: "none", fontSize: "20px" }}
+                    className="text-black text-sm p-1 focus:outline-none"
+                    style={{ marginLeft: "90px", height: "35px", marginTop: "20px", background: "none", border: "none", fontSize: "20px"  }}
                     onClick={switchToInventoryView}
                 >
-                    Inventory
+                    Learn More
                 </button>
             </div>
 
@@ -214,7 +214,7 @@ const TimelineView = ({
                 </h1>
                 <br></br>
                 <h2 className="lead" style={{ fontSize: "30px", maxWidth: "1000px", margin: "0 auto" }}>
-                    On this page, it will show the timeline of important events that took place during the existence of the Roman Empire. As you navigate through
+                    In this view, it will show the timeline of important events that took place during the existence of the Roman Empire. As you navigate through
                     the timeline, you can <strong>click on the visual of a particular event </strong> to get redirected to the webpage that contains information
                     about that event.
                 </h2>

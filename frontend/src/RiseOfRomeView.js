@@ -8,7 +8,7 @@ const RiseOfRomeView = ({
     switchToPunicWarsView,
     switchToFallofRomeView,
     switchToStudentView,
-    switchToInventoryView
+    switchToInventoryView,
 }) => {
     const [isFirstSectionCollapsed, setIsFirstSectionCollapsed] = useState(true);
     const [isSecondSectionCollapsed, setIsSecondSectionCollapsed] = useState(true);
@@ -43,25 +43,46 @@ const RiseOfRomeView = ({
         const foundingButton = document.getElementById("foundingFunFactButton");
         const startRomeButton = document.getElementById("startFunFactButton");
         const settlementButton = document.getElementById("settlementFunFactButton");
+        const addEventButton1 = document.getElementById("addEventButton1");
+        const addEventButton2 = document.getElementById("addEventButton2");
+        const addEventButton3 = document.getElementById("addEventButton3");
 
-        foundingButton.addEventListener("mouseover", handleMouseOver);
+        foundingButton.addEventListener("mouseover", handleMouseOver1);
         foundingButton.addEventListener("mouseleave", handleMouseLeave);
 
-        startRomeButton.addEventListener("mouseover", handleMouseOver);
+        startRomeButton.addEventListener("mouseover", handleMouseOver1);
         startRomeButton.addEventListener("mouseleave", handleMouseLeave);
 
-        settlementButton.addEventListener("mouseover", handleMouseOver);
+        settlementButton.addEventListener("mouseover", handleMouseOver1);
         settlementButton.addEventListener("mouseleave", handleMouseLeave);
 
+        addEventButton1.addEventListener("mouseover", handleMouseOver2);
+        addEventButton1.addEventListener("mouseleave", handleMouseLeave);
+
+        addEventButton2.addEventListener("mouseover", handleMouseOver2);
+        addEventButton2.addEventListener("mouseleave", handleMouseLeave);
+
+        addEventButton3.addEventListener("mouseover", handleMouseOver2);
+        addEventButton3.addEventListener("mouseleave", handleMouseLeave);
+
         return () => {
-            foundingButton.removeEventListener("mouseover", handleMouseOver);
+            foundingButton.removeEventListener("mouseover", handleMouseOver1);
             foundingButton.removeEventListener("mouseleave", handleMouseLeave);
 
-            startRomeButton.removeEventListener("mouseover", handleMouseOver);
+            startRomeButton.removeEventListener("mouseover", handleMouseOver1);
             startRomeButton.removeEventListener("mouseleave", handleMouseLeave);
 
-            settlementButton.removeEventListener("mouseover", handleMouseOver);
+            settlementButton.removeEventListener("mouseover", handleMouseOver1);
             settlementButton.removeEventListener("mouseleave", handleMouseLeave);
+
+            addEventButton1.removeEventListener("mouseover", handleMouseOver2);
+            addEventButton1.removeEventListener("mouseleave", handleMouseLeave);
+
+            addEventButton2.removeEventListener("mouseover", handleMouseOver2);
+            addEventButton2.removeEventListener("mouseleave", handleMouseLeave);
+
+            addEventButton3.removeEventListener("mouseover", handleMouseOver2);
+            addEventButton3.removeEventListener("mouseleave", handleMouseLeave);
         };
     }, []);
 
@@ -146,8 +167,12 @@ const RiseOfRomeView = ({
         }
     }
 
-    const handleMouseOver = (event) => {
+    const handleMouseOver1 = (event) => {
         event.target.style.background = "red";
+    };
+
+    const handleMouseOver2 = (event) => {
+        event.target.style.background = "yellow";
     };
 
     const handleMouseLeave = (event) => {
@@ -162,7 +187,7 @@ const RiseOfRomeView = ({
 
     function showQuiz() {
         setIsQuizCollapsed(!isQuizCollapsed); // uncollaspes the quiz
-        
+
         // array containing the quiz questions
         questions = [
             {
@@ -256,11 +281,65 @@ const RiseOfRomeView = ({
         scoreSpot.appendChild(scoreTxt);
     };
 
+    // add a new event to the database when one of the "Learn More About This Event" button has been clicked
+    function addEvent(event) {
+        if (event === 'founding') {
+            // Construct a new event
+            const newEvent = {
+                "id": 1,
+                "title": "The Founding of Rome",
+                "description": "If you would like to learn more about the founding of Rome, these sites go into more depth about this event:",
+                "sites": [
+                    {
+                        "name": "Wikipedia",
+                        "url": "https://en.wikipedia.org/wiki/Founding_of_Rome"
+                    },
+                    {
+                        "name": "History.com",
+                        "url": "https://www.history.com/this-day-in-history/rome-founded"
+                    },
+                    {
+                        "name": "Encyclopedia Britannica",
+                        "url": "https://www.britannica.com/place/ancient-Rome/Romes-foundation-myth"
+                    }
+                ],
+                "image": "./images/founding_rome.jpg",
+                "category": "Rise of Rome"
+            };
+
+            // Make the POST request
+            fetch("http://localhost:8081/addEvent", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(newEvent)
+            })
+                .then(response => {
+                    if (response.status != 200) {
+                        return response.json()
+                            .then(errData => {
+                                throw new Error(`POST response was not ok :\n Status:${response.status}. \n Error: ${errData.error}`);
+                            })
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log(data);
+                    alert('Event added successfully!'); // Display alert with success message
+                })
+                .catch(error => {
+                    console.error('Error adding event:', error);
+                    alert('Error adding event:' + error.message); // Display alert if there's an error
+                });
+        }
+    }
+
     return (
         <div>
-            <div style={{ backgroundColor: "rgb(33, 37, 41)", display: "flex", justifyContent: "center", height: "80px" }}>
+            <div style={{ backgroundColor: "rgb(0, 128, 255)", display: "flex", justifyContent: "center", height: "80px" }}>
                 <button
-                    className="text-white text-sm p-1 focus:outline-none"
+                    className="text-black text-sm p-1 focus:outline-none"
                     style={{ height: "35px", marginTop: "20px", background: "none", border: "none", fontSize: "20px" }}
                     onClick={switchToTimelineView}
                 >
@@ -274,32 +353,32 @@ const RiseOfRomeView = ({
                     Rise Of Rome
                 </button>
                 <button
-                    className="text-white text-sm p-1 focus:outline-none"
+                    className="text-black text-sm p-1 focus:outline-none"
                     style={{ marginLeft: "90px", height: "35px", marginTop: "20px", background: "none", border: "none", fontSize: "20px" }}
                     onClick={switchToPunicWarsView}
                 >
                     Punic Wars
                 </button>
                 <button
-                    className="text-white text-sm p-1 focus:outline-none"
+                    className="text-black text-sm p-1 focus:outline-none"
                     style={{ marginLeft: "90px", height: "35px", marginTop: "20px", background: "none", border: "none", fontSize: "20px" }}
                     onClick={switchToFallofRomeView}
                 >
                     Fall of Rome
                 </button>
                 <button
-                    className="text-white text-sm p-1 focus:outline-none"
+                    className="text-black text-sm p-1 focus:outline-none"
                     style={{ marginLeft: "90px", height: "35px", marginTop: "20px", background: "none", border: "none", fontSize: "20px" }}
                     onClick={switchToStudentView}
                 >
                     Information about the Students
                 </button>
                 <button
-                    className="text-white text-sm p-1 focus:outline-none"
+                    className="text-black text-sm p-1 focus:outline-none"
                     style={{ marginLeft: "90px", height: "35px", marginTop: "20px", background: "none", border: "none", fontSize: "20px" }}
                     onClick={switchToInventoryView}
                 >
-                    Inventory
+                    Learn More
                 </button>
             </div>
 
@@ -311,18 +390,18 @@ const RiseOfRomeView = ({
                 </h1>
                 <br></br>
                 <h2 className="lead" style={{ fontSize: "30px", maxWidth: "1000px", margin: "0 auto" }}>
-                    On this webpage, it will go over some of the key events that lead to the rise of the Roman
+                    In this view, it will go over some of the key events that lead to the rise of the Roman
                     Empire, such as:
                     <ul>
                         <li>The Founding Of Rome</li>
                         <li>The Start Of The Roman Republic</li>
                         <li>The Settlement Of The Latin War</li>
                     </ul>
-                    While reading through the page, there will be a fun fact button at the end of each event description
-                    to make learning about the rise
-                    the Roman Empire a little more interesting. There will also be a quiz at the end of the webpage to
-                    test your understanding of the events
-                    that lead to the demise of Rome.
+                    While reading through the page, there will be a <b> fun fact </b> button at the end of each event description
+                    to make learning about the rise the Roman Empire a little more interesting. There will also be a <b> quiz </b> at the end of the webpage to
+                    test your understanding of the events that lead to the demise of Rome. If you want to learn more about a specific event, click the 
+                    <b> Learn More About This Event </b> button to add it to a queue. If you go to the <b> Learn More </b> page, you'll find that 
+                    event and resources to learn more about that event.
                 </h2>
             </div>
 
@@ -355,6 +434,13 @@ const RiseOfRomeView = ({
                 <br></br>
 
                 <div className="text-center">
+                    <button // button for adding a new event
+                        id="addEventButton1"
+                        style={{ backgroundColor: "rgb(228, 224, 224)", borderRadius: "10px" }}
+                        onClick={() => addEvent('founding')}
+                    >
+                        Learn More About This Event
+                    </button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <button
                         id="foundingFunFactButton"
                         style={{ backgroundColor: "rgb(228, 224, 224)", borderRadius: "10px" }}
@@ -395,6 +481,13 @@ const RiseOfRomeView = ({
                 <br></br>
 
                 <div className="text-center">
+                    <button // button for adding a new event
+                        id="addEventButton2" 
+                        style={{ backgroundColor: "rgb(228, 224, 224)", borderRadius: "10px" }}
+                        onClick={() => addEvent('republic')}
+                    >
+                        Learn More About This Event
+                    </button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <button
                         id="startFunFactButton"
                         style={{ backgroundColor: "rgb(228, 224, 224)", borderRadius: "10px" }}
@@ -435,6 +528,13 @@ const RiseOfRomeView = ({
                 <br></br>
 
                 <div className="text-center">
+                    <button // button for adding a new event
+                        id="addEventButton3"
+                        style={{ backgroundColor: "rgb(228, 224, 224)", borderRadius: "10px" }}
+                        onClick={() => addEvent('latin')}
+                    >
+                        Learn More About This Event
+                    </button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <button
                         id="settlementFunFactButton"
                         style={{ backgroundColor: "rgb(228, 224, 224)", borderRadius: "10px" }}
@@ -454,7 +554,7 @@ const RiseOfRomeView = ({
                     id="toggleCardButton3"
                     type="button"
                     class="btn btn-primary mb-2 quiz-button"
-                    style={{ marginLeft: "auto", backgroundColor: "rgb(175, 129, 76)"}}
+                    style={{ marginLeft: "auto", backgroundColor: "rgb(175, 129, 76)" }}
                     onClick={showQuiz}
                 >
                     Click to Take Quiz

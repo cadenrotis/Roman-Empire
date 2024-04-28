@@ -17,6 +17,16 @@ const Frontend = () => {
     const [studentView, setStudentView] = useState(false);
     const [inventoryView, setInventoryView] = useState(false);
 
+    const [theEvents, setTheEvents] = useState([]);
+
+    useEffect(() => {
+        // Read the data of events from the database:
+        fetch("http://localhost:8081/listEvents")
+            .then(response => response.json())
+            .then(events => setTheEvents(events));
+
+    }, [timelineView, riseofRomeView, punicWarsView, fallofRomeView, studentView, inventoryView]); // update the theProducts hook anytime a different view is rendered
+
     // functions that handle the switching between the three views
     const switchToTimelineView = () => {
         if (timelineView === false) setTimelineView(true);
@@ -96,6 +106,7 @@ const Frontend = () => {
                 switchToFallofRomeView={switchToFallofRomeView}
                 switchToStudentView={switchToStudentView}
                 switchToInventoryView={switchToInventoryView}
+                theEvents={theEvents}
             />
         )}
         {punicWarsView &&
@@ -106,6 +117,7 @@ const Frontend = () => {
                 switchToFallofRomeView={switchToFallofRomeView}
                 switchToStudentView={switchToStudentView}
                 switchToInventoryView={switchToInventoryView}
+                theEvents={theEvents}
             />}
         {fallofRomeView &&
             <FallOfRomeView
@@ -115,6 +127,7 @@ const Frontend = () => {
                 switchToFallofRomeView={switchToFallofRomeView}
                 switchToStudentView={switchToStudentView}
                 switchToInventoryView={switchToInventoryView}
+                theEvents={theEvents}
             />}
         {studentView &&
             <StudentView
@@ -133,6 +146,7 @@ const Frontend = () => {
                 switchToFallofRomeView={switchToFallofRomeView}
                 switchToStudentView={switchToStudentView}
                 switchToInventoryView={switchToInventoryView}
+                theEvents={theEvents}
             />}
     </div>);
 }

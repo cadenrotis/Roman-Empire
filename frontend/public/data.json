@@ -22,19 +22,19 @@
     "punicWars": [
         {
             "imageId": "first",
-            "titleImg": "The First Punic War Map",
+            "titleImg": "The First Punic War",
             "text": "The first punic war was the first war between Rome and Carthage from 264 to 241 BC. Both sides were led by many different leaders throughout the war. This was also a war mainly fought on the island of Sicily. The war was started when a group of mercenaries called for both sides to help them against a different force which eventually started the war between them as Carthage wanted the entirety of Sicily for themselves. To start the Romans struggled to supply their troops on Sicily as they had never engaged in big naval combat before, while Carthage was built on naval trade and combat. But once the Romans figured out how to sail properly they started to succeed in conquering Sicily. While at the same time the Roman’s sent some troops to the Carthage mainland who were threatening the capital. The Romans did eventually win this war but not without major setbacks of losing two fleets of ships in three years during the war which made it harder to supply their troops throughout the war. This war resulted in Rome gaining all of Sicily except for Syracuse. The Romans lost about 400,000 and the Carthaginians had an unknown number of casualties.",
             "image": "./images/first_punic_war_map.jpg"
         },
         {
             "imageId": "second",
-            "titleImg": "The Second Punic War Map",
+            "titleImg": "The Second Punic War",
             "text": "The second punic war was another war between the Romans and the Carthaginians from 218 to 201 BC, the Romans were led by many different consoles and the Carthaginians were led by Hannibal. Early in the war Hannibal and the Carthaginians surprised the Romans by invading through the Alps. This led to sweeping through much of Rome but not all of it. But then Scipio was put in charge of the Roman legions and led them to victories throughout Iberia and Africa, which caused the Carthaginians to recall Hanniball and his forces to Africa, where he was eventually defeated and caused the surrender of Carthage. This war resulted in Rome gaining much of Iberia (Spain) and over 300,000 Romans were killed and an unknown number of Carthaginians.",
             "image": "./images/second_punic_war_map.jpg"
         },
         {
             "imageId": "third",
-            "titleImg": "The Third Punic War Map",
+            "titleImg": "The Third Punic War",
             "text": "War between Rome and Carthage for the third time from 149 to 146 BC. However this time the war was entirely fought on Carthaginian territory. At the start of the war the Romans took advantage of the fact Carthage couldn’t fight back due to peace treaties. The Romans then besieged some of the cities in order to starve the Carthaginians out. The Carthaginians ended up not actually fighting back much at all and just surrendered. This war resulted in Rome gaining lots of territory in north Africa, Carthage was disbanded, and they lost almost 750,000 lives and an unknown number of Romans.",
             "image": "./images/third_punic_war_map.jpg"
         }

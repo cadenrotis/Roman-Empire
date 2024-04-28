@@ -17,14 +17,14 @@ const dbName = "reactdata";
 const client = new MongoClient(url);
 const db = client.db(dbName);
 
-// GET method to show/read all products contained in Mongo database
-app.get("/listProducts", async (req, res) => {
+// GET method to show/read all events contained in Mongo database
+app.get("/listEvents", async (req, res) => {
     await client.connect(); // connects NodeJS to MongoDB
 
     console.log("Node connected successfully to GET MongoDB");
     const query = {};
     const results = await db
-        .collection("fakestore_catalog")
+        .collection("romanEmpireEvents")
         .find(query)
         .limit(100)
         .toArray();
@@ -34,18 +34,18 @@ app.get("/listProducts", async (req, res) => {
     res.send(results);
 });
 
-// GET method to retrieve the product that matches the requested id
-app.get("/listProducts/:id", async (req, res) => {
+// GET method to retrieve the event that matches the requested id
+app.get("/listEvents/:id", async (req, res) => {
     try {
         const productid = Number(req.params.id);
-        console.log("Product to find :", productid);
+        console.log("Event to find :", productid);
 
         await client.connect();
 
         console.log("Node connected successfully to GET-id MongoDB");
         const query = { "id": productid };
 
-        const results = await db.collection("fakestore_catalog")
+        const results = await db.collection("romanEmpireEvents")
             .findOne(query);
 
         console.log("Results :", results);
@@ -59,8 +59,8 @@ app.get("/listProducts/:id", async (req, res) => {
     }
 });
 
-// POST method to add a new product to the database/product catalog
-app.post("/addProduct", async (req, res) => {
+// POST method to add a new event to the database/product catalog
+app.post("/addEvent", async (req, res) => {
 
     // use try-and-catch in case the server finds an error
     try {
@@ -71,8 +71,8 @@ app.post("/addProduct", async (req, res) => {
 
         await client.connect();
 
-        // check if "fakestore_catalog" collection exists
-        const collections = await db.listCollections({ name: "fakestore_catalog" }).toArray();
+        // check if "romanEmpireEvents" collection exists
+        const collections = await db.listCollections({ name: "romanEmpireEvents" }).toArray();
         if (collections.length === 0) {
             return res.status(404).send({ error: 'Not found: Collection does not exist.' });
         }
@@ -83,25 +83,24 @@ app.post("/addProduct", async (req, res) => {
         const newDocument = {
             "id": req.body.id,
             "title": req.body.title,
-            "price": req.body.price,
             "description": req.body.description,
-            "category": req.body.category,
+            "sites": req.body.sites.map(site => ({
+                "name": site.name,
+                "url": site.url
+            })),
             "image": req.body.image,
-            "rating": {
-                "rate": req.body.rating.rate,
-                "count": req.body.rating.count
-            }
+            "category": req.body.category
         };
         console.log(newDocument);
 
-        // check if id is unique in collection, meaning if duplicate products exist or not
-        const existingDoc = await db.collection("fakestore_catalog").findOne({ "id": newDocument.id });
+        // check if id is unique in collection, meaning if duplicate events exist or not
+        const existingDoc = await db.collection("romanEmpireEvents").findOne({ "id": newDocument.id });
         if (existingDoc) {
-            return res.status(409).send({ error: 'Conflict: A product with this ID already exists.' });
+            return res.status(409).send({ error: 'Conflict: An event with this ID already exists.' });
         }
 
         const results = await db
-            .collection("fakestore_catalog")
+            .collection("romanEmpireEvents")
             .insertOne(newDocument);
         res.status(200);
         res.send(results);
@@ -114,60 +113,60 @@ app.post("/addProduct", async (req, res) => {
 
 });
 
-// PUT method to update the price of a product existing in the database
-app.put("/updateProduct/:id", async (req, res) => {
-    const id = Number(req.params.id);
+// PUT method to update the text of an event existing in the database
+app.put("/updateEvent/:id", async (req, res) => {
+    const id = Number(req.params.text);
     const query = { id: id };
 
     await client.connect();
 
-    console.log("Product to Update :", id);
+    console.log("Event to Update :", id);
 
     // Data for updating the document, typically comes from the request body
     console.log(req.body);
 
     const updateData = {
         $set: {
-            "price": req.body.price,
+            "text": req.body.text,
         }
     };
 
     // read data from robot to update to send to frontend
-    const productUpdated = await db.collection("fakestore_catalog").findOne(query);
+    const eventUpdated = await db.collection("romanEmpireEvents").findOne(query);
 
     // Add options if needed, for example { upsert: true } to create a document if it doesn't exist
     const options = {};
-    const results = await db.collection("fakestore_catalog").updateOne(query, updateData, options);
+    const results = await db.collection("romanEmpireEvents").updateOne(query, updateData, options);
 
     // If no document was found to update, you can choose to handle it by sending a 404 response
     if (results.matchedCount === 0) {
-        return res.status(404).send({ message: 'Product not found' });
+        return res.status(404).send({ message: 'Event not found' });
     }
 
     res.status(200);
-    res.send(productUpdated);
+    res.send(eventUpdated);
 });
 
 // DELETE method to delete the requested product from the database/catalog
-app.delete("/deleteProduct/:id", async (req, res) => {
+app.delete("/deleteEvent/:id", async (req, res) => {
     try {
         const id = Number(req.params.id);
 
         await client.connect();
-        console.log("Product to delete:", id);
+        console.log("Event to delete:", id);
 
         const query = { id: id };
 
         // read data from robot to delete to send it to frontend to validate what you're deleting
-        const robotDeleted = await db.collection("fakestore_catalog").findOne(query);
+        const eventDeleted = await db.collection("romanEmpireEvents").findOne(query);
 
         // delete
-        const results = await db.collection("fakestore_catalog").deleteOne(query);
+        const results = await db.collection("romanEmpireEvents").deleteOne(query);
         res.status(200);
-        res.send(robotDeleted);
+        res.send(eventDeleted);
     }
     catch (error) {
-        console.error("Error deleting robot:", error);
+        console.error("Error deleting event:", error);
         res.status(500).send({ message: 'Internal Server Error' });
     }
 });
