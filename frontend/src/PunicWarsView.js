@@ -43,6 +43,9 @@ const PunicWarsView = ({
         const firstButton = document.getElementById("firstFunFactButton");
         const secondButton = document.getElementById("secondFunFactButton");
         const thirdButton = document.getElementById("thirdFunFactButton");
+        const addEventButton1 = document.getElementById("addEventButton1");
+        const addEventButton2 = document.getElementById("addEventButton2");
+        const addEventButton3 = document.getElementById("addEventButton3");
 
         firstButton.addEventListener("mouseover", handleMouseOver);
         firstButton.addEventListener("mouseleave", handleMouseLeave);
@@ -53,6 +56,15 @@ const PunicWarsView = ({
         thirdButton.addEventListener("mouseover", handleMouseOver);
         thirdButton.addEventListener("mouseleave", handleMouseLeave);
 
+        addEventButton1.addEventListener("mouseover", handleMouseOver2);
+        addEventButton1.addEventListener("mouseleave", handleMouseLeave);
+
+        addEventButton2.addEventListener("mouseover", handleMouseOver2);
+        addEventButton2.addEventListener("mouseleave", handleMouseLeave);
+
+        addEventButton3.addEventListener("mouseover", handleMouseOver2);
+        addEventButton3.addEventListener("mouseleave", handleMouseLeave);
+
         return () => {
             firstButton.removeEventListener("mouseover", handleMouseOver);
             firstButton.removeEventListener("mouseleave", handleMouseLeave);
@@ -62,6 +74,15 @@ const PunicWarsView = ({
 
             thirdButton.removeEventListener("mouseover", handleMouseOver);
             thirdButton.removeEventListener("mouseleave", handleMouseLeave);
+
+            addEventButton1.removeEventListener("mouseover", handleMouseOver2);
+            addEventButton1.removeEventListener("mouseleave", handleMouseLeave);
+
+            addEventButton2.removeEventListener("mouseover", handleMouseOver2);
+            addEventButton2.removeEventListener("mouseleave", handleMouseLeave);
+
+            addEventButton3.removeEventListener("mouseover", handleMouseOver2);
+            addEventButton3.removeEventListener("mouseleave", handleMouseLeave);
         };
     }, []);
 
@@ -147,6 +168,10 @@ const PunicWarsView = ({
 
     const handleMouseOver = (event) => {
         event.target.style.background = "red";
+    };
+
+    const handleMouseOver2 = (event) => {
+        event.target.style.background = "yellow";
     };
 
     const handleMouseLeave = (event) => {
@@ -255,6 +280,119 @@ const PunicWarsView = ({
         scoreSpot.appendChild(scoreTxt);
     };
 
+    // add a new event to the database when one of the "Learn More About This Event" button has been clicked
+    function addEvent(event) {
+        let newEvent;
+
+        if (event === 'first') {
+            // Construct a new event
+            newEvent = {
+                "id": 4,
+                "title": "The First Punic War",
+                "description": "If you would like to learn more about the First Punic War, these sites go into more depth about this event:",
+                "sites": [
+                    {
+                        "name": "Encyclopedia Britannica",
+                        "url": "https://www.britannica.com/event/First-Punic-War"
+                      },
+                      {
+                        "name": "World History Encyclopedia",
+                        "url": "https://www.worldhistory.org/First_Punic_War/"
+                      },
+                      {
+                        "name": "US Naval Institute",
+                        "url": "https://www.usni.org/magazines/naval-history-magazine/2021/august/first-punic-war-audacity-and-hubris"
+                      },
+                      {
+                        "name": "History.com",
+                        "url": "https://www.history.com/topics/ancient-rome/punic-wars"
+                      }
+                ],
+                "image": "./images/first_punic_war_map.jpg",
+                "category": "Punic Wars",
+                "notes": "none"
+            };
+        }
+
+        if (event === 'second') {
+            // Construct a new event
+            newEvent = {
+                "id": 5,
+                "title": "The Second Punic War",
+                "description": "If you would like to learn more about the Second Punic War, these sites go into more depth about this event:",
+                "sites": [
+                    {
+                        "name": "Wikipedia",
+                        "url": "https://en.wikipedia.org/wiki/Second_Punic_War"
+                    },
+                    {
+                        "name": "World History Encyclopedia",
+                        "url": "https://www.worldhistory.org/Second_Punic_War/"
+                    },
+                    {
+                        "name": "Encyclopedia Britannica",
+                        "url": "https://www.britannica.com/event/Second-Punic-War"
+                    }
+                ],
+                "image": "./images/second_punic_war_map.jpg",
+                "category": "Punic Wars",
+                "notes": "none"
+            };
+        }
+
+        if (event === 'third') {
+            // Construct a new event
+            newEvent = {
+                "id": 6,
+                "title": "The Third Punic War",
+                "description": "If you would like to learn more about the Third Punic War, these sites go into more depth about this event:",
+                "sites": [
+                    {
+                        "name": "Wikipedia",
+                        "url": "https://en.wikipedia.org/wiki/Third_Punic_War"
+                    },
+                    {
+                        "name": "World History Encyclopedia",
+                        "url": "https://www.worldhistory.org/Third_Punic_War/"
+                    },
+                    {
+                        "name": "Encyclopedia Britannica",
+                        "url": "https://www.britannica.com/event/Third-Punic-War"
+                    }
+                ],
+                "image": "./images/third_punic_war_map.jpg",
+                "category": "Punic Wars",
+                "notes": "none"
+            };
+        }
+
+        // Make the POST request
+        fetch("http://localhost:8081/addEvent", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newEvent)
+        })
+            .then(response => {
+                if (response.status != 200) {
+                    return response.json()
+                        .then(errData => {
+                            throw new Error(`POST response was not ok :\n Status:${response.status}. \n Error: ${errData.error}`);
+                        })
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log(data);
+                alert('Event added successfully!'); // Display alert with success message
+            })
+            .catch(error => {
+                console.error('Error adding event:', error);
+                alert('Error adding event:' + error.message); // Display alert if there's an error
+            });
+    }
+
     return (
         <div>
             <div style={{ backgroundColor: "rgb(0, 128, 255)", display: "flex", justifyContent: "center", height: "80px" }}>
@@ -267,35 +405,35 @@ const PunicWarsView = ({
                 </button>
                 <button
                     className="text-black text-sm p-1 focus:outline-none"
-                    style={{ marginLeft: "90px", height: "35px", marginTop: "20px", background: "none", border: "none", fontSize: "20px"  }}
+                    style={{ marginLeft: "90px", height: "35px", marginTop: "20px", background: "none", border: "none", fontSize: "20px" }}
                     onClick={switchToRiseofRomeView}
                 >
                     Rise Of Rome
                 </button>
                 <button
                     className="text-white text-sm p-1 focus:outline-none"
-                    style={{ marginLeft: "90px", height: "35px", marginTop: "20px", background: "none", border: "none", fontSize: "20px"  }}
+                    style={{ marginLeft: "90px", height: "35px", marginTop: "20px", background: "none", border: "none", fontSize: "20px" }}
                     onClick={switchToPunicWarsView}
                 >
                     Punic Wars
                 </button>
                 <button
                     className="text-black text-sm p-1 focus:outline-none"
-                    style={{ marginLeft: "90px", height: "35px", marginTop: "20px", background: "none", border: "none", fontSize: "20px"  }}
+                    style={{ marginLeft: "90px", height: "35px", marginTop: "20px", background: "none", border: "none", fontSize: "20px" }}
                     onClick={switchToFallofRomeView}
                 >
                     Fall of Rome
                 </button>
                 <button
                     className="text-black text-sm p-1 focus:outline-none"
-                    style={{ marginLeft: "90px", height: "35px", marginTop: "20px", background: "none", border: "none", fontSize: "20px"  }}
+                    style={{ marginLeft: "90px", height: "35px", marginTop: "20px", background: "none", border: "none", fontSize: "20px" }}
                     onClick={switchToStudentView}
                 >
                     Information about the Students
                 </button>
                 <button
                     className="text-black text-sm p-1 focus:outline-none"
-                    style={{ marginLeft: "90px", height: "35px", marginTop: "20px", background: "none", border: "none", fontSize: "20px"  }}
+                    style={{ marginLeft: "90px", height: "35px", marginTop: "20px", background: "none", border: "none", fontSize: "20px" }}
                     onClick={switchToInventoryView}
                 >
                     Learn More
@@ -318,8 +456,8 @@ const PunicWarsView = ({
                     </ul>
                     While reading through the page, there will be a <b> fun fact </b> button at the end of each event description
                     to make learning about the Punic wars a little more interesting. There will also be a <b> quiz </b> at the end of the webpage to
-                    test your understanding of the events that happened during the punic wars. If you want to learn more about a specific event, click the 
-                    <b> Learn More About This Event </b> button to add it to a queue. If you go to the <b> Learn More </b> page, you'll find that 
+                    test your understanding of the events that happened during the punic wars. If you want to learn more about a specific event, click the
+                    <b> Learn More About This Event </b> button to add it to a queue. If you go to the <b> Learn More </b> page, you'll find that
                     event and resources to learn more about that event.
                 </h2>
             </div>
@@ -353,6 +491,13 @@ const PunicWarsView = ({
                 <br></br>
 
                 <div className="text-center">
+                    <button // button for adding a new event
+                        id="addEventButton1"
+                        style={{ backgroundColor: "rgb(228, 224, 224)", borderRadius: "10px" }}
+                        onClick={() => addEvent('first')}
+                    >
+                        Learn More About This Event
+                    </button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <button
                         id="firstFunFactButton"
                         style={{ backgroundColor: "rgb(228, 224, 224)", borderRadius: "10px" }}
@@ -393,6 +538,13 @@ const PunicWarsView = ({
                 <br></br>
 
                 <div className="text-center">
+                    <button // button for adding a new event
+                        id="addEventButton2"
+                        style={{ backgroundColor: "rgb(228, 224, 224)", borderRadius: "10px" }}
+                        onClick={() => addEvent('second')}
+                    >
+                        Learn More About This Event
+                    </button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <button
                         id="secondFunFactButton"
                         style={{ backgroundColor: "rgb(228, 224, 224)", borderRadius: "10px" }}
@@ -433,6 +585,13 @@ const PunicWarsView = ({
                 <br></br>
 
                 <div className="text-center">
+                    <button // button for adding a new event
+                        id="addEventButton3"
+                        style={{ backgroundColor: "rgb(228, 224, 224)", borderRadius: "10px" }}
+                        onClick={() => addEvent('third')}
+                    >
+                        Learn More About This Event
+                    </button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <button
                         id="thirdFunFactButton"
                         style={{ backgroundColor: "rgb(228, 224, 224)", borderRadius: "10px" }}

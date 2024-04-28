@@ -8,11 +8,15 @@ const InventoryView = ({
     switchToFallofRomeView,
     switchToStudentView,
     switchToInventoryView,
-    theEvents
+    theEvents,
+    setTheEvents
 }) => {
+    // hook to contain the logic for showing and hiding the input bar for inputting modified notes for the desired event
+    const [showNotesInput, setShowNotesInput] = useState(false);
+
     const [index, setIndex] = useState(0);
 
-    // Function to review products like carousel
+    // Function to view next event
     function getOneByOneEventNext() {
         if (theEvents.length > 0) {
             if (index === theEvents.length - 1) setIndex(0);
@@ -20,12 +24,70 @@ const InventoryView = ({
         }
     }
 
-    // Function to review products like carousel
+    // Function to view previous event
     function getOneByOneEventPrev() {
         if (theEvents.length > 0) {
             if (index === 0) setIndex(theEvents.length - 1);
             else setIndex(index - 1);
         }
+    }
+
+    // Function to delete selected event from the database
+    function deleteEvent() {
+        // Get the id of the currently selected event
+        let id = theEvents[index].id;
+        console.log(id)
+
+        // Make the DELETE request
+        fetch(`http://localhost:8081/deleteEvent/${id}`, {
+            method: 'DELETE',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({ id: id })
+        })
+            .then(response => response.json())
+            .then(() => {
+                alert("Event has successfully been deleted!");
+
+                // Read the data of events from the modified database:
+                fetch("http://localhost:8081/listEvents")
+                    .then(response => response.json())
+                    .then(events => setTheEvents(events));
+            })
+            .catch(error => console.error('Error deleting event:', error));
+    }
+
+    // Function to update the text of the selected event from the database
+    function updateEvent() {
+        setShowNotesInput(true);
+    }
+
+    // update the text of the requested event
+    function updateEventNotes() {
+        // Get the id of the currently selected event
+        let id = theEvents[index].id;
+        console.log(id)
+
+        let updatedNotes = document.getElementById("updatedEventText").value;
+
+        // Make the PUT request
+        fetch(`http://localhost:8081/updateEvent/${id}`, {
+            method: 'PUT',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify(
+                {
+                    "notes": updatedNotes
+                }
+            )
+        })
+            .then(response => response.json())
+
+        alert("Event's notes has successfully been updated");
+        setShowNotesInput(false); // Hide the input to change a product's price
+    }
+
+    // updating the event's text was canceled, so don't show the update input bar anymore
+    function cancelTheUpdate() {
+        setShowNotesInput(false); // Hide the input to change a product's price
     }
 
     return (
@@ -83,7 +145,7 @@ const InventoryView = ({
                 </h1>
                 <br></br>
                 <h2 className="lead" style={{ fontSize: "30px", maxWidth: "1000px", margin: "0 auto" }}>
-                    In this view, you'll be able to see the events that you added into your "cart" so that you can learn more about them. Click the 
+                    In this view, you'll be able to see the events that you added into your "cart" so that you can learn more about them. Click the
                     <b> Next </b> and <b> Previous </b> buttons to cycle through all of the events that you added. If you don't want to learn anymore
                     about an event, click the <b> Delete </b> button to remove it from your queue. If you want to update the text of a product, then
                     click the <b> Update </b> after inputting the change that you want to make.
@@ -119,12 +181,32 @@ const InventoryView = ({
                                             </li>
                                         ))}
                                     </ul>
+                                    <p className="card-text"><b>Notes:</b> {theEvents[index].notes}</p>
+                                    <br></br>
+                                    <div style={{ display: "flex", justifyContent: "center" }}>
+                                        <button onClick={() => deleteEvent()}>Delete</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <button onClick={() => updateEvent()}>Update</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     )}
                 </div>
             </div>
+
+            <br></br>
+            <br></br>
+
+            {showNotesInput && (
+                <>
+                    <p style={{ fontSize: "20px", textAlign: "center" }}>Input new notes for the event:</p>
+                    <div style={{ display: "flex", justifyContent: "center" }}>
+                        <input type="text" id="updatedEventText" placeholder="Enter new text" />
+                        <button onClick={updateEventNotes}>Update notes for Event</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <button onClick={cancelTheUpdate}>Cancel</button>
+                    </div>
+                </>
+            )}
 
             <br></br>
 

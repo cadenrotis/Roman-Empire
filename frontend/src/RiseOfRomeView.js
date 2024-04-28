@@ -283,9 +283,11 @@ const RiseOfRomeView = ({
 
     // add a new event to the database when one of the "Learn More About This Event" button has been clicked
     function addEvent(event) {
+        let newEvent;
+        
         if (event === 'founding') {
             // Construct a new event
-            const newEvent = {
+            newEvent = {
                 "id": 1,
                 "title": "The Founding of Rome",
                 "description": "If you would like to learn more about the founding of Rome, these sites go into more depth about this event:",
@@ -304,35 +306,88 @@ const RiseOfRomeView = ({
                     }
                 ],
                 "image": "./images/founding_rome.jpg",
-                "category": "Rise of Rome"
+                "category": "Rise of Rome",
+                "notes": "none"
             };
-
-            // Make the POST request
-            fetch("http://localhost:8081/addEvent", {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(newEvent)
-            })
-                .then(response => {
-                    if (response.status != 200) {
-                        return response.json()
-                            .then(errData => {
-                                throw new Error(`POST response was not ok :\n Status:${response.status}. \n Error: ${errData.error}`);
-                            })
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    console.log(data);
-                    alert('Event added successfully!'); // Display alert with success message
-                })
-                .catch(error => {
-                    console.error('Error adding event:', error);
-                    alert('Error adding event:' + error.message); // Display alert if there's an error
-                });
         }
+
+        if (event === 'republic') {
+            // Construct a new event
+            newEvent = {
+                "id": 2,
+                "title": "The Start of the Roman Republic",
+                "description": "If you would like to learn more about the start of Rome, these sites go into more depth about this event:",
+                "sites": [
+                    {
+                        "name": "Rome.net",
+                        "url": "https://www.rome.net/roman-empire#:~:text=The%20Roman%20Empire%20was%20founded,individual%2C%20an%20emperor%20or%20empress"
+                    },
+                    {
+                        "name": "Khan Academy",
+                        "url": "https://www.khanacademy.org/humanities/world-history/ancient-medieval/roman-a/a/roman-empire"
+                    },
+                    {
+                        "name": "Encyclopedia Britannica",
+                        "url": "https://www.britannica.com/place/Roman-Empire"
+                    }
+                ],
+                "image": "./images/roman_republic.jpg",
+                "category": "Rise of Rome",
+                "notes": "none"
+            };
+        }
+
+        if (event === 'latin') {
+            // Construct a new event
+            newEvent = {
+                "id": 3,
+                "title": "The Settlement of the Latin War",
+                "description": "If you would like to learn more about the founding of Rome, these sites go into more depth about this event:",
+                "sites": [
+                    {
+                        "name": "Wikipedia",
+                        "url": "https://en.wikipedia.org/wiki/Latin_War"
+                    },
+                    {
+                        "name": "Cambridge University",
+                        "url": "https://www.cambridge.org/core/books/abs/history-of-rome/latin-war/1818FC2588F1442176E3C84DC2025630"
+                    },
+                    {
+                        "name": "Encyclopedia Britannica",
+                        "url": "https://www.britannica.com/topic/Latin-War"
+                    }
+                ],
+                "image": "./images/latin_war.jpg",
+                "category": "Rise of Rome",
+                "notes": "none"
+            };
+        }
+
+        // Make the POST request
+        fetch("http://localhost:8081/addEvent", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newEvent)
+        })
+            .then(response => {
+                if (response.status != 200) {
+                    return response.json()
+                        .then(errData => {
+                            throw new Error(`POST response was not ok :\n Status:${response.status}. \n Error: ${errData.error}`);
+                        })
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log(data);
+                alert('Event added successfully!'); // Display alert with success message
+            })
+            .catch(error => {
+                console.error('Error adding event:', error);
+                alert('Error adding event:' + error.message); // Display alert if there's an error
+            });
     }
 
     return (

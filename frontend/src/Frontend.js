@@ -25,7 +25,7 @@ const Frontend = () => {
             .then(response => response.json())
             .then(events => setTheEvents(events));
 
-    }, [timelineView, riseofRomeView, punicWarsView, fallofRomeView, studentView, inventoryView]); // update the theProducts hook anytime a different view is rendered
+    }, [timelineView, riseofRomeView, punicWarsView, fallofRomeView, studentView, inventoryView, theEvents]); // update the theEvents hook anytime a different view is rendered
 
     // functions that handle the switching between the three views
     const switchToTimelineView = () => {
@@ -147,6 +147,7 @@ const Frontend = () => {
                 switchToStudentView={switchToStudentView}
                 switchToInventoryView={switchToInventoryView}
                 theEvents={theEvents}
+                setTheEvents={setTheEvents}
             />}
     </div>);
 }

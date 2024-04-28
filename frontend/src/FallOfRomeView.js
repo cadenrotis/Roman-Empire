@@ -43,6 +43,9 @@ const FallOfRomeView = ({
         const crisisButton = document.getElementById("crisisFunFactButton");
         const riseButton = document.getElementById("riseFunFactButton");
         const fallButton = document.getElementById("fallFunFactButton");
+        const addEventButton1 = document.getElementById("addEventButton1");
+        const addEventButton2 = document.getElementById("addEventButton2");
+        const addEventButton3 = document.getElementById("addEventButton3");
 
         crisisButton.addEventListener("mouseover", handleMouseOver);
         crisisButton.addEventListener("mouseleave", handleMouseLeave);
@@ -53,6 +56,15 @@ const FallOfRomeView = ({
         fallButton.addEventListener("mouseover", handleMouseOver);
         fallButton.addEventListener("mouseleave", handleMouseLeave);
 
+        addEventButton1.addEventListener("mouseover", handleMouseOver2);
+        addEventButton1.addEventListener("mouseleave", handleMouseLeave);
+
+        addEventButton2.addEventListener("mouseover", handleMouseOver2);
+        addEventButton2.addEventListener("mouseleave", handleMouseLeave);
+
+        addEventButton3.addEventListener("mouseover", handleMouseOver2);
+        addEventButton3.addEventListener("mouseleave", handleMouseLeave);
+
         return () => {
             crisisButton.removeEventListener("mouseover", handleMouseOver);
             crisisButton.removeEventListener("mouseleave", handleMouseLeave);
@@ -62,6 +74,15 @@ const FallOfRomeView = ({
 
             fallButton.removeEventListener("mouseover", handleMouseOver);
             fallButton.removeEventListener("mouseleave", handleMouseLeave);
+
+            addEventButton1.removeEventListener("mouseover", handleMouseOver2);
+            addEventButton1.removeEventListener("mouseleave", handleMouseLeave);
+
+            addEventButton2.removeEventListener("mouseover", handleMouseOver2);
+            addEventButton2.removeEventListener("mouseleave", handleMouseLeave);
+
+            addEventButton3.removeEventListener("mouseover", handleMouseOver2);
+            addEventButton3.removeEventListener("mouseleave", handleMouseLeave);
         };
     }, []);
 
@@ -102,7 +123,7 @@ const FallOfRomeView = ({
 
             // get the image and put into a div element
             let imge = document.createElement("div");
-            imge.innerHTML = `<img src=${img}  alt=${title} height="300" style="margin-top: 100px; margin-left:30px"></img>`;
+            imge.innerHTML = `<img src=${img}  alt=${title} height="250" style="margin-top: 100px; margin-left:30px"></img>`;
 
             // get text information from the JSON file and put into a p element
             let txt = document.createElement("p");
@@ -147,6 +168,10 @@ const FallOfRomeView = ({
 
     const handleMouseOver = (event) => {
         event.target.style.background = "red";
+    };
+
+    const handleMouseOver2 = (event) => {
+        event.target.style.background = "yellow";
     };
 
     const handleMouseLeave = (event) => {
@@ -255,6 +280,115 @@ const FallOfRomeView = ({
         scoreSpot.appendChild(scoreTxt);
     };
 
+    // add a new event to the database when one of the "Learn More About This Event" button has been clicked
+    function addEvent(event) {
+        let newEvent;
+
+        if (event === 'crisis') {
+            // Construct a new event
+            newEvent = {
+                "id": 7,
+                "title": "The Crisis of the Third Century",
+                "description": "If you would like to learn more about the Crisis of the Third Century, these sites go into more depth about this event:",
+                "sites": [
+                    {
+                        "name": "The Collector",
+                        "url": "https://www.thecollector.com/what-was-the-crisis-of-the-third-century/"
+                    },
+                    {
+                        "name": "World History Encyclopedia",
+                        "url": "https://www.worldhistory.org/Crisis_of_the_Third_Century/"
+                    },
+                    {
+                        "name": "Wikipedia",
+                        "url": "https://en.wikipedia.org/wiki/Crisis_of_the_Third_Century"
+                    }
+                ],
+                "image": "./images/crisis_of_third_empire.jpg",
+                "category": "Fall of Rome",
+                "notes": "none"
+            };
+        }
+
+        if (event === 'rising') {
+            // Construct a new event
+            newEvent = {
+                "id": 8,
+                "title": "The Rise of the Eastern Empire",
+                "description": "If you would like to learn more about the rise of the eastern empire, these sites go into more depth about this event:",
+                "sites": [
+                    {
+                        "name": "Core Knowledge",
+                        "url": "https://www.coreknowledge.org/wp-content/uploads/2017/02/CKHG-G3-U2-about-constantine-eastern-empre-sack-of-rome.pdf"
+                    },
+                    {
+                        "name": "History.com",
+                        "url": "https://www.history.com/topics/ancient-middle-east/byzantine-empire"
+                    },
+                    {
+                        "name": "Encyclopedia Britannica",
+                        "url": "https://www.britannica.com/place/Byzantine-Empire"
+                    }
+                ],
+                "image": "./images/byzantine_empire.jpg",
+                "category": "Fall of Rome",
+                "notes": "none"
+            };
+        }
+
+        if (event === 'fall') {
+            // Construct a new event
+            newEvent = {
+                "id": 9,
+                "title": "The Fall of Rome",
+                "description": "If you would like to learn more about the Fall of Rome, these sites go into more depth about this event:",
+                "sites": [
+                    {
+                        "name": "Wikipedia",
+                        "url": "https://en.wikipedia.org/wiki/Fall_of_the_Western_Roman_Empire"
+                    },
+                    {
+                        "name": "History.com",
+                        "url": "https://www.history.com/news/8-reasons-why-rome-fell"
+                    },
+                    {
+                        "name": "Encyclopedia Britannica",
+                        "url": "https://www.britannica.com/place/Roman-Empire/Height-and-decline-of-imperial-Rome"
+                    }
+                ],
+                "image": "./images/fall_of_rome.jpg",
+                "category": "Fall of Rome",
+                "notes": "none"
+            };
+        }
+
+        // Make the POST request
+        fetch("http://localhost:8081/addEvent", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newEvent)
+        })
+            .then(response => {
+                if (response.status != 200) {
+                    return response.json()
+                        .then(errData => {
+                            throw new Error(`POST response was not ok :\n Status:${response.status}. \n Error: ${errData.error}`);
+                        })
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log(data);
+                alert('Event added successfully!'); // Display alert with success message
+            })
+            .catch(error => {
+                console.error('Error adding event:', error);
+                alert('Error adding event:' + error.message); // Display alert if there's an error
+            });
+    }
+
     return (
         <div>
             <div style={{ backgroundColor: "rgb(0, 128, 255)", display: "flex", justifyContent: "center", height: "80px" }}>
@@ -267,35 +401,35 @@ const FallOfRomeView = ({
                 </button>
                 <button
                     className="text-black text-sm p-1 focus:outline-none"
-                    style={{ marginLeft: "90px", height: "35px", marginTop: "20px", background: "none", border: "none", fontSize: "20px"  }}
+                    style={{ marginLeft: "90px", height: "35px", marginTop: "20px", background: "none", border: "none", fontSize: "20px" }}
                     onClick={switchToRiseofRomeView}
                 >
                     Rise Of Rome
                 </button>
                 <button
                     className="text-black text-sm p-1 focus:outline-none"
-                    style={{ marginLeft: "90px", height: "35px", marginTop: "20px", background: "none", border: "none", fontSize: "20px"  }}
+                    style={{ marginLeft: "90px", height: "35px", marginTop: "20px", background: "none", border: "none", fontSize: "20px" }}
                     onClick={switchToPunicWarsView}
                 >
                     Punic Wars
                 </button>
                 <button
                     className="text-white text-sm p-1 focus:outline-none"
-                    style={{ marginLeft: "90px", height: "35px", marginTop: "20px", background: "none", border: "none", fontSize: "20px"  }}
+                    style={{ marginLeft: "90px", height: "35px", marginTop: "20px", background: "none", border: "none", fontSize: "20px" }}
                     onClick={switchToFallofRomeView}
                 >
                     Fall of Rome
                 </button>
                 <button
                     className="text-black text-sm p-1 focus:outline-none"
-                    style={{ marginLeft: "90px", height: "35px", marginTop: "20px", background: "none", border: "none", fontSize: "20px"  }}
+                    style={{ marginLeft: "90px", height: "35px", marginTop: "20px", background: "none", border: "none", fontSize: "20px" }}
                     onClick={switchToStudentView}
                 >
                     Information about the Students
                 </button>
                 <button
                     className="text-black text-sm p-1 focus:outline-none"
-                    style={{ marginLeft: "90px", height: "35px", marginTop: "20px", background: "none", border: "none", fontSize: "20px"  }}
+                    style={{ marginLeft: "90px", height: "35px", marginTop: "20px", background: "none", border: "none", fontSize: "20px" }}
                     onClick={switchToInventoryView}
                 >
                     Learn More
@@ -319,8 +453,8 @@ const FallOfRomeView = ({
                     </ul>
                     While reading through the page, there will be a <b> fun fact button </b> at the end of each event description
                     to make learning about the collapse the Roman Empire a little more interesting. There will also be a <b>quiz</b> at the end of the webpage to
-                    test your understanding of the events that lead to the demise of Rome. If you want to learn more about a specific event, click the 
-                    <b> Learn More About This Event </b> button to add it to a queue. If you go to the <b> Learn More </b> page, you'll find that 
+                    test your understanding of the events that lead to the demise of Rome. If you want to learn more about a specific event, click the
+                    <b> Learn More About This Event </b> button to add it to a queue. If you go to the <b> Learn More </b> page, you'll find that
                     event and resources to learn more about that event.
                 </h2>
             </div>
@@ -354,6 +488,13 @@ const FallOfRomeView = ({
                 <br></br>
 
                 <div className="text-center">
+                    <button // button for adding a new event
+                        id="addEventButton1"
+                        style={{ backgroundColor: "rgb(228, 224, 224)", borderRadius: "10px" }}
+                        onClick={() => addEvent('crisis')}
+                    >
+                        Learn More About This Event
+                    </button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <button
                         id="crisisFunFactButton"
                         style={{ backgroundColor: "rgb(228, 224, 224)", borderRadius: "10px" }}
@@ -394,6 +535,13 @@ const FallOfRomeView = ({
                 <br></br>
 
                 <div className="text-center">
+                    <button // button for adding a new event
+                        id="addEventButton2"
+                        style={{ backgroundColor: "rgb(228, 224, 224)", borderRadius: "10px" }}
+                        onClick={() => addEvent('rising')}
+                    >
+                        Learn More About This Event
+                    </button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <button
                         id="riseFunFactButton"
                         style={{ backgroundColor: "rgb(228, 224, 224)", borderRadius: "10px" }}
@@ -434,6 +582,13 @@ const FallOfRomeView = ({
                 <br></br>
 
                 <div className="text-center">
+                    <button // button for adding a new event
+                        id="addEventButton3"
+                        style={{ backgroundColor: "rgb(228, 224, 224)", borderRadius: "10px" }}
+                        onClick={() => addEvent('fall')}
+                    >
+                        Learn More About This Event
+                    </button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <button
                         id="fallFunFactButton"
                         style={{ backgroundColor: "rgb(228, 224, 224)", borderRadius: "10px" }}

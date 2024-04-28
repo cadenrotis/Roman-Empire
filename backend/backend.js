@@ -89,7 +89,8 @@ app.post("/addEvent", async (req, res) => {
                 "url": site.url
             })),
             "image": req.body.image,
-            "category": req.body.category
+            "category": req.body.category,
+            "notes": req.body.notes
         };
         console.log(newDocument);
 
@@ -115,7 +116,7 @@ app.post("/addEvent", async (req, res) => {
 
 // PUT method to update the text of an event existing in the database
 app.put("/updateEvent/:id", async (req, res) => {
-    const id = Number(req.params.text);
+    const id = Number(req.params.id);
     const query = { id: id };
 
     await client.connect();
@@ -127,7 +128,7 @@ app.put("/updateEvent/:id", async (req, res) => {
 
     const updateData = {
         $set: {
-            "text": req.body.text,
+            "notes": req.body.notes,
         }
     };
 
@@ -157,7 +158,7 @@ app.delete("/deleteEvent/:id", async (req, res) => {
 
         const query = { id: id };
 
-        // read data from robot to delete to send it to frontend to validate what you're deleting
+        // read data to delete to send it to frontend to validate what you're deleting
         const eventDeleted = await db.collection("romanEmpireEvents").findOne(query);
 
         // delete
