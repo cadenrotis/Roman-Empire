@@ -115,46 +115,55 @@ const TimelineView = ({
                 img1.appendChild(imge);
                 text1.appendChild(txt);
                 title1.appendChild(subject);
+                img1.onclick(switchToRiseofRomeView);
             }
             else if (imageResult.timeline[i].imageId === "startOfRepublicTime") {
                 img2.appendChild(imge);
                 text2.appendChild(txt);
                 title2.appendChild(subject);
+                img2.onclick(switchToRiseofRomeView);
             }
             else if (imageResult.timeline[i].imageId === "settlementLatinWarTime") {
                 img3.appendChild(imge);
                 text3.appendChild(txt);
                 title3.appendChild(subject);
+                img3.onclick(switchToRiseofRomeView);
             }
             else if (imageResult.timeline[i].imageId === "firstpunicwarTime") {
                 img4.appendChild(imge);
                 text4.appendChild(txt);
                 title4.appendChild(subject);
+                img4.onclick(switchToPunicWarsView);
             }
             else if (imageResult.timeline[i].imageId === "secondpunicwarTime") {
                 img5.appendChild(imge);
                 text5.appendChild(txt);
                 title5.appendChild(subject);
+                img5.onclick(switchToPunicWarsView);
             }
             else if (imageResult.timeline[i].imageId === "thirdpunicwarTime") {
                 img6.appendChild(imge);
                 text6.appendChild(txt);
                 title6.appendChild(subject);
+                img6.onclick(switchToPunicWarsView);
             }
             else if (imageResult.timeline[i].imageId === "crisisTime") {
                 img7.appendChild(imge);
                 text7.appendChild(txt);
                 title7.appendChild(subject);
+                img7.onclick(switchToFallofRomeView);
             }
             else if (imageResult.timeline[i].imageId === "riseEasternEmpireTime") {
                 img8.appendChild(imge);
                 text8.appendChild(txt);
                 title8.appendChild(subject);
+                img8.onclick(switchToFallofRomeView);
             }
             else if (imageResult.timeline[i].imageId === "fallTime") {
                 img9.appendChild(imge);
                 text9.appendChild(txt);
                 title9.appendChild(subject);
+                img9.onclick(switchToFallofRomeView);
             }
         }
     }
