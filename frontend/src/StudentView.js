@@ -11,6 +11,7 @@ const StudentView = ({
 }) => {
     return (
         <div>
+            {/* The navigational bar */}
             <div style={{ backgroundColor: "rgb(0, 128, 255)", display: "flex", justifyContent: "center", height: "80px" }}>
                 <button
                     className="text-black text-sm p-1 focus:outline-none"
@@ -21,35 +22,35 @@ const StudentView = ({
                 </button>
                 <button
                     className="text-black text-sm p-1 focus:outline-none"
-                    style={{ marginLeft: "90px", height: "35px", marginTop: "20px", background: "none", border: "none", fontSize: "20px"  }}
+                    style={{ marginLeft: "90px", height: "35px", marginTop: "20px", background: "none", border: "none", fontSize: "20px" }}
                     onClick={switchToRiseofRomeView}
                 >
                     Rise Of Rome
                 </button>
                 <button
                     className="text-black text-sm p-1 focus:outline-none"
-                    style={{ marginLeft: "90px", height: "35px", marginTop: "20px", background: "none", border: "none", fontSize: "20px"  }}
+                    style={{ marginLeft: "90px", height: "35px", marginTop: "20px", background: "none", border: "none", fontSize: "20px" }}
                     onClick={switchToPunicWarsView}
                 >
                     Punic Wars
                 </button>
                 <button
                     className="text-black text-sm p-1 focus:outline-none"
-                    style={{ marginLeft: "90px", height: "35px", marginTop: "20px", background: "none", border: "none", fontSize: "20px"  }}
+                    style={{ marginLeft: "90px", height: "35px", marginTop: "20px", background: "none", border: "none", fontSize: "20px" }}
                     onClick={switchToFallofRomeView}
                 >
                     Fall of Rome
                 </button>
                 <button
                     className="text-white text-sm p-1 focus:outline-none"
-                    style={{ marginLeft: "90px", height: "35px", marginTop: "20px", background: "none", border: "none", fontSize: "20px"  }}
+                    style={{ marginLeft: "90px", height: "35px", marginTop: "20px", background: "none", border: "none", fontSize: "20px" }}
                     onClick={switchToStudentView}
                 >
                     Information about the Students
                 </button>
                 <button
                     className="text-black text-sm p-1 focus:outline-none"
-                    style={{ marginLeft: "90px", height: "35px", marginTop: "20px", background: "none", border: "none", fontSize: "20px"  }}
+                    style={{ marginLeft: "90px", height: "35px", marginTop: "20px", background: "none", border: "none", fontSize: "20px" }}
                     onClick={switchToInventoryView}
                 >
                     Learn More
@@ -58,6 +59,7 @@ const StudentView = ({
 
             <br></br>
 
+            {/* The header and description of the view */}
             <div className="header" style={{ padding: "20px" }}>
                 <h1 style={{ display: "flex", justifyContent: "center" }}>
                     <font size="+20"><u>Information about the Students</u></font>
@@ -70,6 +72,7 @@ const StudentView = ({
 
             <br></br>
 
+            {/* Descripion of student 1 with name and email included */}
             <div style={{ maxWidth: "1600px", margin: "0 auto" }}>
                 <div className="row featurette">
                     <div className="col-md-7">
@@ -95,6 +98,7 @@ const StudentView = ({
                 <br></br>
                 <br></br>
 
+                {/* Descripion of student 2 with name and email included */}
                 <div className="row featurette">
                     <div className="col-md-7">
                         <h1 className="featurette-heading fw-normal lh-1"><u>Brandon Rau</u></h1>
@@ -115,6 +119,7 @@ const StudentView = ({
                     </div>
                 </div>
 
+                {/* Descripion of course name and number */}
                 <div>
                     <h1 class="featurette-heading fw-normal lh-1"><u>Course:</u></h1>
                     <p style={{ fontSize: "30px" }}>
@@ -127,6 +132,7 @@ const StudentView = ({
                 <br></br>
                 <br></br>
 
+                {/* Descripion of professors with their name and email included */}
                 <div>
                     <h1 class="featurette-heading fw-normal lh-1"><u>Professors:</u></h1>
                     <p style={{ fontSize: "30px" }}>
@@ -138,6 +144,7 @@ const StudentView = ({
                 <br></br>
                 <br></br>
 
+                {/* The date that the webpage/project was completed*/}
                 <div>
                     <h1 class="featurette-heading fw-normal lh-1">
                         <u>Date:</u> <b id="date">May 4th, 2024</b>
@@ -148,6 +155,7 @@ const StudentView = ({
             <br></br>
             <br></br>
 
+            {/* The footer */}
             <footer class="b-footer">
                 <div>
                     <p

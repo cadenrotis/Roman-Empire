@@ -88,6 +88,7 @@ const Frontend = () => {
         setStudentView(false);
     };
 
+    // render a view and send the hooks to switch the view and access the theEvents array
     return (<div>
         {timelineView &&
             <TimelineView

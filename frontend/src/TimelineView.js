@@ -161,6 +161,7 @@ const TimelineView = ({
 
     return (
         <div>
+            {/* The navigational bar */}
             <div style={{ backgroundColor: "rgb(0, 128, 255)", display: "flex", justifyContent: "center", height: "80px" }}>
                 <button
                     className="text-white text-sm p-1 focus:outline-none"
@@ -208,6 +209,7 @@ const TimelineView = ({
 
             <br></br>
 
+            {/* The header and description of the view */}
             <div className="header" style={{ padding: "20px" }}>
                 <h1 style={{ display: "flex", justifyContent: "center" }}>
                     <font size="+20"><u>Timeline of the Roman Empire</u></font>
@@ -220,6 +222,7 @@ const TimelineView = ({
                 </h2>
             </div>
 
+            {/* Where the timeline starts */}
             <div>
                 <div id="foundingTimelineImg" style={{ textAlign: "center" }} onClick={switchToRiseofRomeView}></div>
                 <div id="foundingTimelineTitle" style={{ textAlign: "center" }}></div>
@@ -276,6 +279,7 @@ const TimelineView = ({
 
             <br></br>
 
+            {/* The footer */}
             <footer class="b-footer">
                 <div>
                     <p

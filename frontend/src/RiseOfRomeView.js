@@ -10,12 +10,16 @@ const RiseOfRomeView = ({
     switchToStudentView,
     switchToInventoryView,
 }) => {
+    // hooks used to keep track of collapsed sections of events
     const [isFirstSectionCollapsed, setIsFirstSectionCollapsed] = useState(true);
     const [isSecondSectionCollapsed, setIsSecondSectionCollapsed] = useState(true);
     const [isThirdSectionCollapsed, setIsThirdSectionCollapsed] = useState(true);
+
+    // hooks used for managing the quiz
     const [isQuizCollapsed, setIsQuizCollapsed] = useState(true);
     const [score, setScore] = useState(null);
 
+    // functions that determine which sections are collasped or not
     const toggleFirstSectionCollapse = () => {
         setIsFirstSectionCollapsed(!isFirstSectionCollapsed);
         setIsSecondSectionCollapsed(true); // Collapse the second section
@@ -40,7 +44,7 @@ const RiseOfRomeView = ({
             .then(imageResult => load(imageResult))
             .catch(error => console.error('Error fetching data:', error));
 
-        // Event listener setup
+        // Event listener setup for styling the various buttons
         const foundingButton = document.getElementById("foundingFunFactButton");
         const startRomeButton = document.getElementById("startFunFactButton");
         const settlementButton = document.getElementById("settlementFunFactButton");
@@ -168,6 +172,7 @@ const RiseOfRomeView = ({
         }
     }
 
+    // defining the event handlers for the buttons
     const handleMouseOver1 = (event) => {
         event.target.style.background = "red";
     };
@@ -289,7 +294,7 @@ const RiseOfRomeView = ({
             });
     }
 
-    // if quiz submitted, color correct and incorrect questions
+    // if quiz submitted, color correct and incorrect questions and give the user a final score
     const handleQuizSubmission = () => {
         let answerDiv = document.querySelectorAll('.answers');
         let questionSelected = document.querySelectorAll('.questiondiv');
@@ -353,6 +358,7 @@ const RiseOfRomeView = ({
 
     return (
         <div>
+            {/* The navigational bar */}
             <div style={{ backgroundColor: "rgb(0, 128, 255)", display: "flex", justifyContent: "center", height: "80px" }}>
                 <button
                     className="text-black text-sm p-1 focus:outline-none"
@@ -400,6 +406,7 @@ const RiseOfRomeView = ({
 
             <br></br>
 
+            {/* The header and description of the view */}
             <div className="header" style={{ padding: "20px" }}>
                 <h1 style={{ display: "flex", justifyContent: "center" }}>
                     <font size="+20"><u>The Rise of Rome</u></font>
@@ -424,6 +431,7 @@ const RiseOfRomeView = ({
             <br></br>
             <br></br>
 
+            {/* The first collapsible event */}
             <div style={{ display: "flex", justifyContent: "center" }}>
                 <button type="button" className="collapsib" onClick={toggleFirstSectionCollapse} style={{ fontSize: "24px" }}>
                     <div className="container">
@@ -457,7 +465,7 @@ const RiseOfRomeView = ({
                     >
                         Learn More About This Event
                     </button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button
+                    <button // fun fact button
                         id="foundingFunFactButton"
                         style={{ backgroundColor: "rgb(228, 224, 224)", borderRadius: "10px" }}
                         onClick={() => displayFunFact('founding')}
@@ -471,6 +479,7 @@ const RiseOfRomeView = ({
             <br></br>
             <br></br>
 
+            {/* The second collapsible event */}
             <div style={{ display: "flex", justifyContent: "center" }}>
                 <button type="button" className="collapsib" onClick={toggleSecondSectionCollapse} style={{ fontSize: "24px" }}>
                     <div className="container">
@@ -505,7 +514,7 @@ const RiseOfRomeView = ({
                         Learn More About This Event
                     </button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <button
-                        id="startFunFactButton"
+                        id="startFunFactButton" // fun fact button
                         style={{ backgroundColor: "rgb(228, 224, 224)", borderRadius: "10px" }}
                         onClick={() => displayFunFact('republic')}
                     >
@@ -518,6 +527,7 @@ const RiseOfRomeView = ({
             <br></br>
             <br></br>
 
+            {/* The third collapsible event */}
             <div style={{ display: "flex", justifyContent: "center" }}>
                 <button type="button" className="collapsib" onClick={toggleThirdSectionCollapse} style={{ fontSize: "24px" }}>
                     <div className="container">
@@ -551,7 +561,7 @@ const RiseOfRomeView = ({
                     >
                         Learn More About This Event
                     </button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button
+                    <button // fun fact button
                         id="settlementFunFactButton"
                         style={{ backgroundColor: "rgb(228, 224, 224)", borderRadius: "10px" }}
                         onClick={() => displayFunFact('latin')}
@@ -565,6 +575,7 @@ const RiseOfRomeView = ({
             <br></br>
             <br></br>
 
+            {/* Quiz for more user interaction */}
             <div className="col" style={{ marginLeft: "20px" }}>
                 <button
                     id="toggleCardButton3"
@@ -607,6 +618,7 @@ const RiseOfRomeView = ({
             <br></br>
             <br></br>
 
+            {/* Footer */}
             <footer class="b-footer">
                 <div>
                     <p

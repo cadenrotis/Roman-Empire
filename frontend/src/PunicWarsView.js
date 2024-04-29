@@ -10,12 +10,16 @@ const PunicWarsView = ({
     switchToInventoryView,
     theEvents
 }) => {
+    // hooks used to keep track of collapsed sections of events
     const [isFirstSectionCollapsed, setIsFirstSectionCollapsed] = useState(true);
     const [isSecondSectionCollapsed, setIsSecondSectionCollapsed] = useState(true);
     const [isThirdSectionCollapsed, setIsThirdSectionCollapsed] = useState(true);
+
+    // hooks used for managing the quiz
     const [isQuizCollapsed, setIsQuizCollapsed] = useState(true);
     const [score, setScore] = useState(null);
 
+    // functions that determine which sections are collasped or not
     const toggleFirstSectionCollapse = () => {
         setIsFirstSectionCollapsed(!isFirstSectionCollapsed);
         setIsSecondSectionCollapsed(true); // Collapse the second section
@@ -40,7 +44,7 @@ const PunicWarsView = ({
             .then(imageResult => load(imageResult))
             .catch(error => console.error('Error fetching data:', error));
 
-        // Event listener setup
+        // Event listener setup for styling the various buttons
         const firstButton = document.getElementById("firstFunFactButton");
         const secondButton = document.getElementById("secondFunFactButton");
         const thirdButton = document.getElementById("thirdFunFactButton");
@@ -167,6 +171,7 @@ const PunicWarsView = ({
         }
     }
 
+    // defining the event handlers for the buttons
     const handleMouseOver = (event) => {
         event.target.style.background = "red";
     };
@@ -179,7 +184,7 @@ const PunicWarsView = ({
         event.target.style.background = "rgb(228, 224, 224)";
     };
 
-    // if quiz submitted, color correct and incorrect questions
+    // if quiz submitted, color correct and incorrect questions and give the user a final score
     const handleQuizSubmission = () => {
         let answerDiv = document.querySelectorAll('.answers');
         let questionSelected = document.querySelectorAll('.questiondiv');
@@ -255,19 +260,19 @@ const PunicWarsView = ({
                     {
                         "name": "Encyclopedia Britannica",
                         "url": "https://www.britannica.com/event/First-Punic-War"
-                      },
-                      {
+                    },
+                    {
                         "name": "World History Encyclopedia",
                         "url": "https://www.worldhistory.org/First_Punic_War/"
-                      },
-                      {
+                    },
+                    {
                         "name": "US Naval Institute",
                         "url": "https://www.usni.org/magazines/naval-history-magazine/2021/august/first-punic-war-audacity-and-hubris"
-                      },
-                      {
+                    },
+                    {
                         "name": "History.com",
                         "url": "https://www.history.com/topics/ancient-rome/punic-wars"
-                      }
+                    }
                 ],
                 "image": "./images/first_punic_war_map.jpg",
                 "category": "Punic Wars",
@@ -356,6 +361,7 @@ const PunicWarsView = ({
 
     return (
         <div>
+            {/* The navigational bar */}
             <div style={{ backgroundColor: "rgb(0, 128, 255)", display: "flex", justifyContent: "center", height: "80px" }}>
                 <button
                     className="text-black text-sm p-1 focus:outline-none"
@@ -403,6 +409,7 @@ const PunicWarsView = ({
 
             <br></br>
 
+            {/* The header and description of the view */}
             <div className="header" style={{ padding: "20px" }}>
                 <h1 style={{ display: "flex", justifyContent: "center" }}>
                     <font size="+20"><u>The Punic Wars</u></font>
@@ -426,6 +433,7 @@ const PunicWarsView = ({
             <br></br>
             <br></br>
 
+            {/* The first collapsible event */}
             <div style={{ display: "flex", justifyContent: "center" }}>
                 <button type="button" className="collapsib" onClick={toggleFirstSectionCollapse} style={{ fontSize: "24px" }}>
                     <div className="container">
@@ -459,7 +467,7 @@ const PunicWarsView = ({
                     >
                         Learn More About This Event
                     </button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button
+                    <button // fun fact button
                         id="firstFunFactButton"
                         style={{ backgroundColor: "rgb(228, 224, 224)", borderRadius: "10px" }}
                         onClick={() => displayFunFact('first')}
@@ -473,6 +481,7 @@ const PunicWarsView = ({
             <br></br>
             <br></br>
 
+            {/* The second collapsible event */}
             <div style={{ display: "flex", justifyContent: "center" }}>
                 <button type="button" className="collapsib" onClick={toggleSecondSectionCollapse} style={{ fontSize: "24px" }}>
                     <div className="container">
@@ -506,7 +515,7 @@ const PunicWarsView = ({
                     >
                         Learn More About This Event
                     </button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button
+                    <button // fun fact button
                         id="secondFunFactButton"
                         style={{ backgroundColor: "rgb(228, 224, 224)", borderRadius: "10px" }}
                         onClick={() => displayFunFact('second')}
@@ -520,6 +529,7 @@ const PunicWarsView = ({
             <br></br>
             <br></br>
 
+            {/* The third collapsible event */}
             <div style={{ display: "flex", justifyContent: "center" }}>
                 <button type="button" className="collapsib" onClick={toggleThirdSectionCollapse} style={{ fontSize: "24px" }}>
                     <div className="container">
@@ -553,7 +563,7 @@ const PunicWarsView = ({
                     >
                         Learn More About This Event
                     </button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button
+                    <button // fun fact button
                         id="thirdFunFactButton"
                         style={{ backgroundColor: "rgb(228, 224, 224)", borderRadius: "10px" }}
                         onClick={() => displayFunFact('third')}
@@ -567,6 +577,7 @@ const PunicWarsView = ({
             <br></br>
             <br></br>
 
+            {/* Quiz for more user interaction */}
             <div className="col" style={{ marginLeft: "20px" }}>
                 <button
                     id="toggleCardButton3"
@@ -609,6 +620,7 @@ const PunicWarsView = ({
             <br></br>
             <br></br>
 
+            {/* Footer */}
             <footer class="b-footer">
                 <div>
                     <p

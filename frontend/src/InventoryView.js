@@ -14,6 +14,7 @@ const InventoryView = ({
     // hook to contain the logic for showing and hiding the input bar for inputting modified notes for the desired event
     const [showNotesInput, setShowNotesInput] = useState(false);
 
+    // hook to keep track of the current index of theEvents array
     const [index, setIndex] = useState(0);
 
     // Function to view next event
@@ -100,6 +101,7 @@ const InventoryView = ({
         setShowNotesInput(false); // Hide the input to change an event's notes
     }
 
+    // find the index of the searchd event and set it to the hook to change the view to that event
     function findSearchedEvent() {
         let requestedEvent = document.getElementById("searchedEvent").value;
         console.log(requestedEvent);
@@ -117,6 +119,7 @@ const InventoryView = ({
 
     return (
         <div>
+            {/* The navigational bar */}
             <div style={{ backgroundColor: "rgb(0, 128, 255)", display: "flex", justifyContent: "center", height: "80px" }}>
                 <button
                     className="text-black text-sm p-1 focus:outline-none"
@@ -164,6 +167,7 @@ const InventoryView = ({
 
             <br></br>
 
+            {/* The header and description of the view */}
             <div className="header" style={{ padding: "20px" }}>
                 <h1 style={{ display: "flex", justifyContent: "center" }}>
                     <font size="+20"><u>Your Inventory</u></font>
@@ -180,6 +184,7 @@ const InventoryView = ({
             <br></br>
             <br></br>
 
+            {/* The search input bar and buttons to switch between the events in the theEvents array */}
             <div style={{ display: "flex", justifyContent: "center" }}>
                 <input type="text" id="searchedEvent" placeholder="Search for an Event" style={{ width: "300px" }} />
                 <button onClick={findSearchedEvent}>Search</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -190,6 +195,7 @@ const InventoryView = ({
             <br></br>
             <br></br>
 
+            {/* Shows the events in the theEvents array */}
             <div className="container mt-3">
                 <div className="row justify-content-center">
                     {theEvents.length > 0 && ( // don't render the event card if there is nothing in the "theEvents" array
@@ -210,6 +216,7 @@ const InventoryView = ({
                                     </ul>
                                     <p className="card-text"><b>Notes:</b> {theEvents[index].notes}</p>
                                     <br></br>
+                                    {/* Buttons to delete the event or update the event's notes; located at the bottom of the event card */}
                                     <div style={{ display: "flex", justifyContent: "center" }}>
                                         <button onClick={() => deleteEvent()}>Delete</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         <button onClick={() => updateEvent()}>Update</button>
@@ -224,6 +231,7 @@ const InventoryView = ({
             <br></br>
             <br></br>
 
+            {/* When the user hits the update button, the search input for updating the event's notes will appear */}
             {showNotesInput && (
                 <>
                     <p style={{ fontSize: "20px", textAlign: "center" }}>Input new notes for the event:</p>
@@ -237,6 +245,7 @@ const InventoryView = ({
 
             <br></br>
 
+            {/* Footeer */}
             <footer class="b-footer">
                 <div>
                     <p
