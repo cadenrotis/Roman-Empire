@@ -16,7 +16,7 @@ const TimelineView = ({
             .then(imageResult => load(imageResult))
             .catch(error => console.error('Error fetching data:', error));
     }, []);
-
+    
     // inputting all data for the timeline webpage from the JSON file
     function load(imageResult) {
         // elements of the summary the founding of rome
@@ -95,7 +95,7 @@ const TimelineView = ({
             let img = imageResult.timeline[i].image;
             let textt = imageResult.timeline[i].text;
             let title = imageResult.timeline[i].titleImg;
-            //let url = imageResult.timeline[i].link;
+            let url = imageResult.timeline[i].link;
 
             // get the image and put into a div element
             let imge = document.createElement("div");
@@ -221,55 +221,55 @@ const TimelineView = ({
             </div>
 
             <div>
-                <div id="foundingTimelineImg" style={{ textAlign: "center" }}></div>
+                <div id="foundingTimelineImg" style={{ textAlign: "center" }} onClick={switchToRiseofRomeView}></div>
                 <div id="foundingTimelineTitle" style={{ textAlign: "center" }}></div>
                 <div id="foundingTimelineText" style={{ textAlign: "center" }}></div>
 
                 <h1 style={{ textAlign: "center", fontSize: "90px" }}>↓</h1>
 
-                <div id="startTimelineImg" style={{ textAlign: "center" }}></div>
+                <div id="startTimelineImg" style={{ textAlign: "center" }} onClick={switchToRiseofRomeView}></div>
                 <div id="startTimelineTitle" style={{ textAlign: "center" }}></div>
                 <div id="startTimelineText" style={{ textAlign: "center" }}></div>
 
                 <h1 style={{ textAlign: "center", fontSize: "90px" }}>↓</h1>
 
-                <div id="settlementTimelineImg" style={{ textAlign: "center" }}></div>
+                <div id="settlementTimelineImg" style={{ textAlign: "center" }} onClick={switchToRiseofRomeView}></div>
                 <div id="settlementTimelineTitle" style={{ textAlign: "center" }}></div>
                 <div id="settlementTimelineText" style={{ textAlign: "center" }}></div>
 
                 <h1 style={{ textAlign: "center", fontSize: "90px" }}>↓</h1>
 
-                <div id="firstPunicWarTimelineImg" style={{ textAlign: "center" }}></div>
+                <div id="firstPunicWarTimelineImg" style={{ textAlign: "center" }} onClick={switchToPunicWarsView}></div>
                 <div id="firstPunicWarTimelineTitle" style={{ textAlign: "center" }}></div>
                 <div id="firstPunicWarTimelineText" style={{ textAlign: "center" }}></div>
 
                 <h1 style={{ textAlign: "center", fontSize: "90px" }}>↓</h1>
 
-                <div id="secondPunicWarTimelineImg" style={{ textAlign: "center" }}></div>
+                <div id="secondPunicWarTimelineImg" style={{ textAlign: "center" }} onClick={switchToPunicWarsView}></div>
                 <div id="secondPunicWarTimelineTitle" style={{ textAlign: "center" }}></div>
                 <div id="secondPunicWarTimelineText" style={{ textAlign: "center" }}></div>
 
                 <h1 style={{ textAlign: "center", fontSize: "90px" }}>↓</h1>
 
-                <div id="thirdPunicWarTimelineImg" style={{ textAlign: "center" }}></div>
+                <div id="thirdPunicWarTimelineImg" style={{ textAlign: "center" }} onClick={switchToPunicWarsView}></div>
                 <div id="thirdPunicWarTimelineTitle" style={{ textAlign: "center" }}></div>
                 <div id="thirdPunicWarTimelineText" style={{ textAlign: "center" }}></div>
 
                 <h1 style={{ textAlign: "center", fontSize: "90px" }}>↓</h1>
 
-                <div id="crisisTimelineImg" style={{ textAlign: "center" }}></div>
+                <div id="crisisTimelineImg" style={{ textAlign: "center" }} onClick={switchToFallofRomeView}></div>
                 <div id="crisisTimelineTitle" style={{ textAlign: "center" }}></div>
                 <div id="crisisTimelineText" style={{ textAlign: "center" }}></div>
 
                 <h1 style={{ textAlign: "center", fontSize: "90px" }}>↓</h1>
 
-                <div id="riseTimelineImg" style={{ textAlign: "center" }}></div>
+                <div id="riseTimelineImg" style={{ textAlign: "center" }} onClick={switchToFallofRomeView}></div>
                 <div id="riseTimelineTitle" style={{ textAlign: "center" }}></div>
                 <div id="riseTimelineText" style={{ textAlign: "center" }}></div>
 
                 <h1 style={{ textAlign: "center", fontSize: "90px" }}>↓</h1>
 
-                <div id="fallTimelineImg" style={{ textAlign: "center" }}></div>
+                <div id="fallTimelineImg" style={{ textAlign: "center" }} onClick={switchToFallofRomeView}></div>
                 <div id="fallTimelineTitle" style={{ textAlign: "center" }}></div>
                 <div id="fallTimelineText" style={{ textAlign: "center" }}></div>
             </div>

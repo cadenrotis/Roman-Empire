@@ -36,7 +36,7 @@ const InventoryView = ({
     function deleteEvent() {
         // Get the id of the currently selected event
         let id = theEvents[index].id;
-        console.log(id)
+        console.log(id);
 
         // Make the DELETE request
         fetch(`http://localhost:8081/deleteEvent/${id}`, {
@@ -51,7 +51,10 @@ const InventoryView = ({
                 // Read the data of events from the modified database:
                 fetch("http://localhost:8081/listEvents")
                     .then(response => response.json())
-                    .then(events => setTheEvents(events));
+                    .then(events => {
+                        setTheEvents(events);
+                        setIndex(0);
+                    });
             })
             .catch(error => console.error('Error deleting event:', error));
     }
@@ -65,7 +68,7 @@ const InventoryView = ({
     function updateEventNotes() {
         // Get the id of the currently selected event
         let id = theEvents[index].id;
-        console.log(id)
+        console.log(id);
 
         let updatedNotes = document.getElementById("updatedEventText").value;
 
@@ -80,14 +83,36 @@ const InventoryView = ({
             )
         })
             .then(response => response.json())
+            .then(() => {
+                alert("Event's notes has successfully been updated");
+                setShowNotesInput(false); // Hide the input to change an event's notes
 
-        alert("Event's notes has successfully been updated");
-        setShowNotesInput(false); // Hide the input to change a product's price
+                // Read the data of events from the modified database:
+                fetch("http://localhost:8081/listEvents")
+                    .then(response => response.json())
+                    .then(events => setTheEvents(events));
+            })
+            .catch(error => console.error('Error deleting event:', error));
     }
 
     // updating the event's text was canceled, so don't show the update input bar anymore
     function cancelTheUpdate() {
-        setShowNotesInput(false); // Hide the input to change a product's price
+        setShowNotesInput(false); // Hide the input to change an event's notes
+    }
+
+    function findSearchedEvent() {
+        let requestedEvent = document.getElementById("searchedEvent").value;
+        console.log(requestedEvent);
+
+        // find the index of the searched event
+        for (let i = 0; i < theEvents.length; i++) {
+            if (theEvents[i].title === requestedEvent) {
+                setIndex(i);
+            }
+        }
+
+        // Clear the input field after search
+        document.getElementById("searchedEvent").value = "";
     }
 
     return (
@@ -156,6 +181,8 @@ const InventoryView = ({
             <br></br>
 
             <div style={{ display: "flex", justifyContent: "center" }}>
+                <input type="text" id="searchedEvent" placeholder="Search for an Event" style={{ width: "300px" }} />
+                <button onClick={findSearchedEvent}>Search</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <button onClick={() => getOneByOneEventNext()}>Next</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <button onClick={() => getOneByOneEventPrev()}>Prev</button>
             </div>
