@@ -14,6 +14,7 @@ const RiseOfRomeView = ({
     const [isSecondSectionCollapsed, setIsSecondSectionCollapsed] = useState(true);
     const [isThirdSectionCollapsed, setIsThirdSectionCollapsed] = useState(true);
     const [isQuizCollapsed, setIsQuizCollapsed] = useState(true);
+    const [score, setScore] = useState(null);
 
     const toggleFirstSectionCollapse = () => {
         setIsFirstSectionCollapsed(!isFirstSectionCollapsed);
@@ -179,112 +180,10 @@ const RiseOfRomeView = ({
         event.target.style.background = "rgb(228, 224, 224)";
     };
 
-    let quizDiv;
-    let scoreSpot;
-    let scoreTxt;
-    let quizArr;
-    let questions;
-
-    function showQuiz() {
-        setIsQuizCollapsed(!isQuizCollapsed); // uncollaspes the quiz
-
-        // array containing the quiz questions
-        questions = [
-            {
-                question: "1. Who founded Rome?",
-                answers: {
-                    a: "Julius Ceaser",
-                    b: "Scipio",
-                    c: "Romulus and Remus"
-                },
-                solution: "c"
-            },
-            {
-                question: "2. What government was overthrown?",
-                answers: {
-                    a: "Tyranny",
-                    b: "Democracy",
-                    c: "Communism"
-                },
-                solution: "a"
-            },
-            {
-                question: "3. What war provoked the Latins to fight the Romans?",
-                answers: {
-                    a: "The first Punic war",
-                    b: "The first Samnite war",
-                    c: "The second Punic war"
-                },
-                solution: "b"
-            }
-        ];
-
-        quizArr = [];
-        questions.forEach(
-            (q, num) => {
-
-                let answers = [];
-
-                for (let i in q.answers) {
-
-                    answers.push(`
-          <p>
-            <input type="radio" name="questiondiv${num}" value="${i}">
-            <em>${i}.</em>
-            ${q.answers[i]}
-          </p>
-          `);
-                }
-
-                quizArr.push(`
-      <div class="questiondiv"> ${q.question} 
-      </div>
-      <div class="answers"> ${answers.join('')}
-       </div>
-        `);
-            }
-        );
-
-        quizDiv = document.getElementById('quizdiv');
-        quizDiv.innerHTML = quizArr.join('');
-        console.log(quizDiv.querySelectorAll('.answers'));
-
-        scoreSpot = document.getElementById("score");
-        scoreTxt = document.createElement("p");
-    }
-
-    // if quiz submitted, color correct and incorrect questions
-    const handleQuizSubmit = () => {
-        let answerDiv = quizDiv.querySelectorAll('.answers');
-        let questionSelected = quizDiv.querySelectorAll('.questiondiv');
-        let counter = 0;
-
-        questions.forEach(
-            (q, num) => {
-                let selectedAns = (answerDiv[num].querySelector(`input[name=questiondiv${num}]:checked`)).value;
-
-                // set questions with the right answer to green
-                if (selectedAns === q.solution) {
-                    questionSelected[num].style.fontWeight = '900';
-                    questionSelected[num].style.color = 'lightgreen';
-                    counter = counter + 1;
-                }
-                // set questions with the wrong answer to red
-                else {
-                    questionSelected[num].style.fontWeight = '900';
-                    questionSelected[num].style.color = 'red';
-                }
-            });
-
-        // display the number of correct answers that the user got
-        scoreTxt.innerHTML = `<p class="quizAnswer" style="text-align: center">You got <strong>${counter} out of 3</strong> correct</p>`;
-        scoreSpot.appendChild(scoreTxt);
-    };
-
     // add a new event to the database when one of the "Learn More About This Event" button has been clicked
     function addEvent(event) {
         let newEvent;
-        
+
         if (event === 'founding') {
             // Construct a new event
             newEvent = {
@@ -390,6 +289,68 @@ const RiseOfRomeView = ({
             });
     }
 
+    // if quiz submitted, color correct and incorrect questions
+    const handleQuizSubmission = () => {
+        let answerDiv = document.querySelectorAll('.answers');
+        let questionSelected = document.querySelectorAll('.questiondiv');
+        let counter = 0;
+
+        questions.forEach((q, num) => {
+            let selectedRadioButton = answerDiv[num].querySelector(`input[name=questiondiv${num}]:checked`);
+
+            // if this questions hasn't been answered, count it wrong
+            if (!selectedRadioButton) {
+                questionSelected[num].style.fontWeight = '900';
+                questionSelected[num].style.color = 'red';
+                return;
+            }
+
+            let selectedAns = (answerDiv[num].querySelector(`input[name=questiondiv${num}]:checked`)).value;
+
+            if (selectedAns === q.solution) {
+                questionSelected[num].style.fontWeight = '900';
+                questionSelected[num].style.color = 'lightgreen';
+                counter = counter + 1;
+            } else {
+                questionSelected[num].style.fontWeight = '900';
+                questionSelected[num].style.color = 'red';
+            }
+        });
+
+        setScore(counter);
+    };
+
+    // array containing the quiz questions
+    let questions = [
+        {
+            question: "1. Who founded Rome?",
+            answers: {
+                a: "Julius Ceaser",
+                b: "Scipio",
+                c: "Romulus and Remus"
+            },
+            solution: "c"
+        },
+        {
+            question: "2. What government was overthrown?",
+            answers: {
+                a: "Tyranny",
+                b: "Democracy",
+                c: "Communism"
+            },
+            solution: "a"
+        },
+        {
+            question: "3. What war provoked the Latins to fight the Romans?",
+            answers: {
+                a: "The first Punic war",
+                b: "The first Samnite war",
+                c: "The second Punic war"
+            },
+            solution: "b"
+        }
+    ];
+
     return (
         <div>
             <div style={{ backgroundColor: "rgb(0, 128, 255)", display: "flex", justifyContent: "center", height: "80px" }}>
@@ -454,8 +415,8 @@ const RiseOfRomeView = ({
                     </ul>
                     While reading through the page, there will be a <b> fun fact </b> button at the end of each event description
                     to make learning about the rise the Roman Empire a little more interesting. There will also be a <b> quiz </b> at the end of the webpage to
-                    test your understanding of the events that lead to the demise of Rome. If you want to learn more about a specific event, click the 
-                    <b> Learn More About This Event </b> button to add it to a queue. If you go to the <b> Learn More </b> page, you'll find that 
+                    test your understanding of the events that lead to the demise of Rome. If you want to learn more about a specific event, click the
+                    <b> Learn More About This Event </b> button to add it to a queue. If you go to the <b> Learn More </b> page, you'll find that
                     event and resources to learn more about that event.
                 </h2>
             </div>
@@ -537,7 +498,7 @@ const RiseOfRomeView = ({
 
                 <div className="text-center">
                     <button // button for adding a new event
-                        id="addEventButton2" 
+                        id="addEventButton2"
                         style={{ backgroundColor: "rgb(228, 224, 224)", borderRadius: "10px" }}
                         onClick={() => addEvent('republic')}
                     >
@@ -604,45 +565,44 @@ const RiseOfRomeView = ({
             <br></br>
             <br></br>
 
-            <div class="col">
+            <div className="col" style={{ marginLeft: "20px" }}>
                 <button
                     id="toggleCardButton3"
                     type="button"
                     class="btn btn-primary mb-2 quiz-button"
-                    style={{ marginLeft: "auto", backgroundColor: "rgb(175, 129, 76)" }}
-                    onClick={showQuiz}
+                    style={{ marginLeft: "auto", backgroundColor: "rgb(175, 129, 76)", fontSize: "20px", padding: "10px 20px" }}
+                    onClick={() => setIsQuizCollapsed(!isQuizCollapsed)}
                 >
                     Click to Take Quiz
                 </button>
-                <div
-                    id="card3"
-                    class={`card ${isQuizCollapsed ? "collapse" : "show"} shadow-sm`}
-                >
-                    <div class="card-body">
-                        <h3 class="featurette-heading fw-normal lh-1" style={{ textAlign: "center" }}>
-                            <pre>
-                                <u>The Rise of Rome Quiz</u>
-                            </pre>
-                        </h3>
-                        <div
-                            style={{
-                                textAlign: "center",
-                                fontSize: "30px",
-                                backgroundColor: "yellow",
-                            }}
-                        >
-                            Important Disclaimer: the quiz won't be graded until all questions have been answered
-                        </div>
-                        <br></br>
-                        <div id="quizdiv">{quizArr}</div>
-                        <div id="score"></div>
-                        <button id="submit" onClick={handleQuizSubmit}>
-                            Submit
-                        </button>
+                <div style={{ border: "1px solid black", padding: "10px" }} className={`content ${isQuizCollapsed ? "collapse" : ""}`}>
+                    <h3 class="featurette-heading fw-normal lh-1" style={{ textAlign: "center" }}>
+                        <pre>
+                            <u>The Rise of Rome Quiz</u>
+                        </pre>
+                    </h3>
+                    <div id="quizdiv" className="quiz" style={{ marginTop: "20px" }}>
+                        {questions.map((q, num) => (
+                            <div key={num}>
+                                <div className="questiondiv">{q.question}</div>
+                                <div className="answers">
+                                    {Object.keys(q.answers).map((key) => (
+                                        <p key={key}>
+                                            <input type="radio" name={`questiondiv${num}`} value={key} />
+                                            <em>{key}. </em>
+                                            {q.answers[key]}
+                                        </p>
+                                    ))}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                    <button onClick={handleQuizSubmission} style={{ marginTop: "20px" }}>Submit Quiz</button>
+                    <div id="score" style={{ display: "flex", justifyContent: "center", fontSize: "25px" }}>
+                        {score !== null && <p className="quizAnswer">You got <strong>{score} out of 3</strong> correct</p>}
                     </div>
                 </div>
             </div>
-
 
             <br></br>
             <br></br>
