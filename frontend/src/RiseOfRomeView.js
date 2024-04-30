@@ -337,7 +337,7 @@ const RiseOfRomeView = ({
             solution: "c"
         },
         {
-            question: "2. What government was overthrown?",
+            question: "2. What style of government was overthrown?",
             answers: {
                 a: "Tyranny",
                 b: "Democracy",
@@ -348,9 +348,27 @@ const RiseOfRomeView = ({
         {
             question: "3. What war provoked the Latins to fight the Romans?",
             answers: {
-                a: "The first Punic war",
-                b: "The first Samnite war",
-                c: "The second Punic war"
+                a: "The First Punic war",
+                b: "The First Samnite war",
+                c: "The Second Punic war"
+            },
+            solution: "b"
+        },
+        {
+            question: "4. What year was the Roman Republic founded?",
+            answers: {
+                a: "509 BC",
+                b: "753 BC",
+                c: "340 BC"
+            },
+            solution: "a"
+        },
+        {
+            question: "5. What city eventually grew to be the Roman Republic capital?",
+            answers: {
+                a: "Naples",
+                b: "Latium",
+                c: "Campania"
             },
             solution: "b"
         }
@@ -610,7 +628,7 @@ const RiseOfRomeView = ({
                     </div>
                     <button onClick={handleQuizSubmission} style={{ marginTop: "20px" }}>Submit Quiz</button>
                     <div id="score" style={{ display: "flex", justifyContent: "center", fontSize: "25px" }}>
-                        {score !== null && <p className="quizAnswer">You got <strong>{score} out of 3</strong> correct</p>}
+                        {score !== null && <p className="quizAnswer">You got <strong>{score} out of 5</strong> correct</p>}
                     </div>
                 </div>
             </div>
