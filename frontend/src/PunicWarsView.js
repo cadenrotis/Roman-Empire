@@ -218,7 +218,7 @@ const PunicWarsView = ({
     // array containing the quiz questions
     let questions = [
         {
-            question: "1. Where did a Majority of the fighting take place?",
+            question: "1. Where did a Majority of the fighting take place in the First Punic war?",
             answers: {
                 a: "Rome",
                 b: "Carthage",
@@ -227,7 +227,7 @@ const PunicWarsView = ({
             solution: "c"
         },
         {
-            question: "2. Who was the Carthanginian commander?",
+            question: "2. Who was the Carthanginian commander during the Second Punic war?",
             answers: {
                 a: "Hannibal",
                 b: "Scipio",
@@ -236,11 +236,29 @@ const PunicWarsView = ({
             solution: "a"
         },
         {
-            question: "3. What land did Rome gain from this war?",
+            question: "3. Where did Rome gain land from after the Third Punic war?",
             answers: {
                 a: "Iberia",
                 b: "Africa",
                 c: "Italy"
+            },
+            solution: "b"
+        },
+        {
+            question: "4. What years did the Third Punic War take place?",
+            answers: {
+                a: "218 to 201 BC",
+                b: "149 to 146 BC",
+                c: "264 to 241 BC"
+            },
+            solution: "b"
+        },
+        {
+            question: "5. How many casualties did the Romans have in the First Punic War?",
+            answers: {
+                a: "40,000",
+                b: "400,000",
+                c: "100,000"
             },
             solution: "b"
         }
@@ -612,7 +630,7 @@ const PunicWarsView = ({
                     </div>
                     <button onClick={handleQuizSubmission} style={{ marginTop: "20px" }}>Submit Quiz</button>
                     <div id="score" style={{ display: "flex", justifyContent: "center", fontSize: "25px" }}>
-                        {score !== null && <p className="quizAnswer">You got <strong>{score} out of 3</strong> correct</p>}
+                        {score !== null && <p className="quizAnswer">You got <strong>{score} out of 5</strong> correct</p>}
                     </div>
                 </div>
             </div>
