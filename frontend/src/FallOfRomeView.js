@@ -243,6 +243,24 @@ const FallOfRomeView = ({
                 c: "The Eastern Roman Empire"
             },
             solution: "b"
+        },
+        {
+            question: "4. Which emporer was killed by the plague?",
+            answers: {
+                a: "Diocletian",
+                b: "Alexander Severus",
+                c: "Claudis II"
+            },
+            solution: "c"
+        },
+        {
+            question: "5. What year did the complete destruction of the Roman empire take place?",
+            answers: {
+                a: "476 AD",
+                b: "395 AD",
+                c: "410 AD"
+            },
+            solution: "a"
         }
     ];
 
@@ -609,7 +627,7 @@ const FallOfRomeView = ({
                     </div>
                     <button onClick={handleQuizSubmission} style={{ marginTop: "20px" }}>Submit Quiz</button>
                     <div id="score" style={{ display: "flex", justifyContent: "center", fontSize: "25px" }}>
-                        {score !== null && <p className="quizAnswer">You got <strong>{score} out of 3</strong> correct</p>}
+                        {score !== null && <p className="quizAnswer">You got <strong>{score} out of 5</strong> correct</p>}
                     </div>
                 </div>
             </div>
