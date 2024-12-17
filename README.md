@@ -23,8 +23,3 @@ During this project I learned a lot about using React to create different views/
  - React
  - NodeJS
  - MongoDB
-
- # Directory Navigation: 
- To view the Java classes, navigate to `app/src/main/java/com/example/project2` (https://github.com/cadenrotis/Route-Finder/tree/master/app/src/main/java/com/example/project2).
-
- To view the xml files and other files used for the views, navigate to `app/src/main/res/layout` (https://github.com/cadenrotis/Route-Finder/tree/master/app/src/main/res/layout).
